@@ -1,0 +1,109 @@
+.topbar {
+  background-color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.topbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+}
+
+.topbar-logo h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+  color: #1a5c1a;
+}
+
+.topbar-nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 30px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0%;
+}
+
+.topbar-nav li {
+  margin: 0;
+}
+
+.topbar-nav a {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.topbar-nav a:hover {
+  color: #1a5c1a;
+}
+
+.topbar-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #EC8020;
+  transition: width 0.3s ease;
+}
+
+.topbar-nav a:hover::after {
+  width: 100%;
+}
+
+.topbar-cta-button {
+  width: 125px;
+  height: 40px;
+  background-color: #EC8020;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  white-space: nowrap;
+}
+
+.topbar-cta-button:hover {
+  background-color: #146d14;
+  transform: translateY(-2px);
+}
+
+.topbar-cta-button:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .topbar-container {
+    height: 60px;
+  }
+
+  .topbar-nav {
+    gap: 15px;
+  }
+
+  .topbar-nav a {
+    font-size: 12px;
+  }
+
+  .topbar-logo h1 {
+    font-size: 20px;
+  }
+}
