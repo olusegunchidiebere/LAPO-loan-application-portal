@@ -1,0 +1,1248 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+
+/* Desktop Layout (Original) */
+.first-box {
+    display: flex;
+    flex: 1;
+}
+
+.FirstBox-header {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 56px;
+    letter-spacing: -0.96px;
+    width: 800px;
+    height: 112px;
+    margin-top: 98px;
+    margin-left: 20px;
+}
+.first-box {
+    margin-bottom: 106px;
+}
+
+.omo {
+    color: #EC8020;
+}
+
+.PersonLoan {
+    width: 580px;
+    height: 432px;
+    margin-top: 66px;
+    margin-right: 20px;
+}
+
+.submit-yada {
+    margin-top: -260px;
+    margin-left: 20px;
+}
+
+.submit-text {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    letter-spacing: 0px;
+    margin-bottom: 3px;
+    line-height: 28px;
+}
+
+.loan-buttons1 {
+    margin-top: 48px;
+    margin-left: 20px;
+    height: 54px;
+    width: 138px;
+    margin-right: 10px;
+    background-color: #EC8020;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.loan-buttons1:hover {
+    background-color: #008D4B;
+    transform: translateY(-2px);
+}
+
+.loan-buttons1:active {
+    transform: translateY(0);
+}
+
+.loan-buttons2 {
+    margin-top: 48px;
+    height: 54px;
+    width: 207px;
+    background-color: white;
+    color: #008D4B;
+    border: 1px;
+    border-color: #008D4B;
+    border-radius: 8px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.loan-buttons2:hover {
+    background-color: white;
+    transform: translateY(-2px);
+}
+
+.loan-buttons2:active {
+    transform: translateY(0);
+}
+
+/* Tablets: 769px to 1023px - Responsive adjustments */
+@media (max-width: 1023px) {
+    .FirstBox-header {
+        font-size: 48px;
+        width: auto;
+        height: auto;
+        margin-top: 40px;
+        margin-left: 10px;
+    }
+
+    .PersonLoan {
+        width: 400px;
+        height: auto;
+        margin-top: 20px;
+        margin-right: 10px;
+    }
+
+    .submit-yada {
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+
+    .submit-text {
+        font-size: 16px;
+    }
+
+    .loan-buttons1,
+    .loan-buttons2 {
+        font-size: 14px;
+        height: 48px;
+    }
+
+    .loan-buttons1 {
+        width: 120px;
+    }
+
+    .loan-buttons2 {
+        width: 180px;
+    }
+}
+
+/* Small Tablets: 641px to 768px */
+@media (max-width: 768px) {
+    .first-box {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .FirstBox-header {
+        font-size: 40px;
+        width: 100%;
+        height: auto;
+        margin: 20px 10px 0 10px;
+        text-align: center;
+        letter-spacing: -0.5px;
+    }
+
+    .PersonLoan {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+        margin: 20px 10px;
+    }
+
+    .submit-yada {
+        margin-top: 10px;
+        margin-left: 0;
+        text-align: center;
+        padding: 0 15px;
+    }
+
+    .submit-text {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .loan-buttons1,
+    .loan-buttons2 {
+        display: inline-block;
+        margin-right: 10px;
+        margin-top: 15px;
+        margin-bottom: 10px;
+        height: 48px;
+        font-size: 14px;
+    }
+
+    .loan-buttons1 {
+        width: auto;
+        min-width: 120px;
+    }
+
+    .loan-buttons2 {
+        width: auto;
+        min-width: 150px;
+    }
+}
+
+/* Mobile: up to 640px */
+@media (max-width: 640px) {
+    .first-box {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .FirstBox-header {
+        font-size: 28px;
+        width: 100%;
+        height: auto;
+        margin: 15px 10px 0 10px;
+        text-align: center;
+        letter-spacing: -0.3px;
+    }
+
+    .PersonLoan {
+        width: 100%;
+        max-width: 350px;
+        height: auto;
+        margin: 15px 10px;
+    }
+
+    .submit-yada {
+        margin-top: 5px;
+        margin-left: 0;
+        text-align: center;
+        padding: 0 10px;
+    }
+
+    .submit-text {
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+
+    .loan-buttons1,
+    .loan-buttons2 {
+        display: block;
+        width: 100%;
+        margin: 8px 0;
+        height: 48px;
+        font-size: 14px;
+    }
+
+    .loan-buttons1 {
+        margin-right: 0;
+    }
+
+    .loan-buttons2 {
+        margin-bottom: 15px;
+    }
+}
+
+/* Extra small mobile: up to 480px */
+@media (max-width: 480px) {
+    .FirstBox-header {
+        font-size: 24px;
+        margin-top: 10px;
+    }
+
+    .PersonLoan {
+        max-width: 280px;
+        margin: 10px 10px;
+    }
+
+    .submit-text {
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+
+    .loan-buttons1,
+    .loan-buttons2 {
+        height: 44px;
+        font-size: 12px;
+        margin: 6px 0;
+    }
+}
+/* why choose us */
+/* Why Choose Us Section scoped to React component */
+.why-choose-us {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Inter', sans-serif;
+  color: #1f2937;
+  max-width: 1368px;
+  max-height: 720px;
+  margin: 0 auto;
+  padding: 60px 24px;
+  margin-bottom: 106px;
+}
+
+.why-choose-us * {
+  box-sizing: border-box;
+}
+
+.why-choose-us .section-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.why-choose-us .section-tagline {
+  color: #09825d;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.why-choose-us .section-title {
+  color: #262626;
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Grid Layout */
+.why-choose-us .cards-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+/* Base Card Styling */
+.why-choose-us .card {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #f0f0f0;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.015);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  min-height: 340px;
+}
+
+.why-choose-us .card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
+  border-color: #d1d5db;
+}
+
+.why-choose-us .card-header {
+  margin-bottom: 24px;
+}
+
+.why-choose-us .card-title {
+  color: #1a1a1a;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.why-choose-us .card-description {
+  color: #666666;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.why-choose-us .card-illustration {
+  margin-top: auto;
+  position: relative;
+  width: 100%;
+}
+
+/* Grid Column Spans for Cards */
+.why-choose-us .card-easy-app {
+  grid-column: span 6;
+}
+
+.why-choose-us .card-fast-proc {
+  grid-column: span 3;
+}
+
+.why-choose-us .card-secure {
+  grid-column: span 3;
+}
+
+.why-choose-us .card-simple {
+  grid-column: span 3;
+}
+
+.why-choose-us .card-loan-type {
+  grid-column: span 6;
+}
+
+.why-choose-us .card-upload {
+  grid-column: span 3;
+}
+
+/* Card 1: Easy Application Graphic */
+.why-choose-us .easy-app-mockup {
+  background: #fafafa;
+  border-radius: 12px;
+  padding: 20px;
+  height: 140px;
+  overflow: hidden;
+  border: 1px solid #f3f3f3;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.why-choose-us .mockup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.why-choose-us .mockup-step {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #333333;
+}
+
+.why-choose-us .mockup-progress-track {
+  width: 90px;
+  height: 6px;
+  background: #e5e5e5;
+  border-radius: 3px;
+}
+
+.why-choose-us .mockup-progress-fill {
+  width: 45%;
+  height: 100%;
+  background: #006747;
+  border-radius: 3px;
+}
+
+.why-choose-us .mockup-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.why-choose-us .mockup-field {
+  height: 38px;
+  background: #ffffff;
+  border-radius: 6px;
+  border: 1px solid #f3f4f6;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.why-choose-us .mockup-field.field-active {
+  border-color: #ffd8c2;
+  box-shadow: 0 0 0 1px #ffebe0;
+}
+
+/* Card 2: Fast Processing Checklist */
+.why-choose-us .checklist {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.why-choose-us .checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.why-choose-us .check-circle {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.why-choose-us .checklist-item-active .check-circle {
+  border: 2px solid #09825d;
+}
+
+.why-choose-us .checklist-item-inactive .check-circle {
+  border: 2px solid #d1d5db;
+}
+
+.why-choose-us .check-text {
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.why-choose-us .checklist-item-active .check-text {
+  color: #1a1a1a;
+}
+
+.why-choose-us .checklist-item-inactive .check-text {
+  color: #999999;
+}
+
+/* Card 3: Secure Platform Graphic */
+.why-choose-us .secure-mockup {
+  position: relative;
+  height: 140px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.why-choose-us .secure-folder {
+  width: 90px;
+  height: 72px;
+  z-index: 3;
+  position: relative;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.08));
+}
+
+.why-choose-us .secure-doc {
+  position: absolute;
+  background: #ffffff;
+  border-radius: 6px;
+  border: 1.5px solid #eaeaea;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
+  z-index: 1;
+}
+
+.why-choose-us .green-bar {
+  height: 6px;
+  background-color: #006747;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+/* Left Document (Pie chart) */
+.why-choose-us .doc-chart {
+  width: 50px;
+  height: 60px;
+  left: 20%;
+  top: 15px;
+  transform: rotate(-12deg);
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+}
+
+.why-choose-us .pie-chart-wrapper {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.why-choose-us .circular-chart {
+  display: block;
+  margin: 6px auto;
+  max-width: 32px;
+  max-height: 32px;
+}
+
+.why-choose-us .circle-bg {
+  fill: none;
+  stroke: #eeeeee;
+  stroke-width: 4;
+}
+
+.why-choose-us .circle {
+  fill: none;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke: #09825d;
+}
+
+/* Right Document (Lines) */
+.why-choose-us .doc-lines {
+  width: 50px;
+  height: 60px;
+  right: 20%;
+  top: 18px;
+  transform: rotate(12deg);
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.why-choose-us .doc-lines-group {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.why-choose-us .doc-line {
+  height: 3px;
+  background: #e5e7eb;
+  border-radius: 1.5px;
+}
+
+.why-choose-us .line-short { width: 60%; }
+.why-choose-us .line-medium { width: 80%; }
+.why-choose-us .line-long { width: 100%; }
+.why-choose-us .line-wide {
+  height: 4px;
+  width: 80%;
+  background: #e5e7eb;
+  margin: 6px auto 4px auto;
+}
+.why-choose-us .line-narrow {
+  height: 4px;
+  width: 50%;
+  background: #e5e7eb;
+  margin: 0 auto;
+}
+
+/* Card 4: Simple Process Flowchart */
+.why-choose-us .flowchart-mockup {
+  position: relative;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.why-choose-us .flow-doc {
+  background: #ffffff;
+  border-radius: 4px;
+  border: 1px solid #eaeaea;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
+}
+
+.why-choose-us .doc-top {
+  width: 42px;
+  height: 52px;
+  z-index: 2;
+  position: relative;
+  padding-top: 6px;
+}
+
+.why-choose-us .doc-dots {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+
+.why-choose-us .doc-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 1px;
+}
+
+.why-choose-us .dot-orange { background: #f59e0b; }
+.why-choose-us .dot-green { background: #006747; }
+
+.why-choose-us .flow-arrows {
+  width: 140px;
+  height: 35px;
+  position: absolute;
+  top: 38px;
+  z-index: 1;
+}
+
+.why-choose-us .flow-bottom-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: auto;
+  padding: 0 8px;
+}
+
+.why-choose-us .doc-bottom-left {
+  width: 38px;
+  height: 48px;
+  display: flex;
+  flex-direction: column;
+}
+
+.why-choose-us .doc-square {
+  width: 10px;
+  height: 10px;
+  background: #09825d;
+  margin: 6px 0 4px 6px;
+  border-radius: 1px;
+}
+
+.why-choose-us .doc-bottom-left .doc-lines-group {
+  padding: 0 6px 6px 6px;
+  gap: 3px;
+}
+
+.why-choose-us .doc-bottom-right {
+  width: 38px;
+  height: 48px;
+  display: flex;
+  flex-direction: column;
+}
+
+.why-choose-us .green-border-bar {
+  height: 6px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom: 2px solid #09825d;
+}
+
+.why-choose-us .doc-bottom-right .doc-lines-group {
+  padding: 6px;
+  gap: 3px;
+}
+
+/* Card 5: Any Loan Type tags */
+.why-choose-us .tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.why-choose-us .loan-tag {
+  background: #e6f4ea;
+  color: #09825d;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.why-choose-us .loan-tag:hover {
+  background: #d2ece0;
+  transform: scale(1.02);
+}
+
+/* Card 6: Easy Document Upload Graphic */
+.why-choose-us .upload-mockup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.why-choose-us .upload-file-status {
+  background: #f7f7f7;
+  padding: 10px 14px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.why-choose-us .file-name {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #333333;
+}
+
+.why-choose-us .check-icon {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.why-choose-us .check-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.why-choose-us .upload-progress-track {
+  height: 6px;
+  background: #e5e5e5;
+  border-radius: 3px;
+}
+
+.why-choose-us .upload-progress-fill {
+  width: 80%;
+  height: 100%;
+  background: #f59e0b;
+  border-radius: 3px;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .why-choose-us .card-easy-app {
+    grid-column: span 12;
+  }
+  .why-choose-us .card-fast-proc {
+    grid-column: span 6;
+  }
+  .why-choose-us .card-secure {
+    grid-column: span 6;
+  }
+  .why-choose-us .card-simple {
+    grid-column: span 6;
+  }
+  .why-choose-us .card-loan-type {
+    grid-column: span 12;
+  }
+  .why-choose-us .card-upload {
+    grid-column: span 6;
+  }
+}
+
+@media (max-width: 640px) {
+  .why-choose-us {
+    padding: 40px 16px;
+  }
+  
+  .why-choose-us .section-title {
+    font-size: 1.75rem;
+  }
+  
+  .why-choose-us .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .why-choose-us .card {
+    grid-column: span 12 !important;
+    min-height: auto;
+  }
+  
+  .why-choose-us .card-illustration {
+    margin-top: 24px;
+  }
+}
+
+/* our loan products section*/
+/* Scoped CSS for LoanProducts component */
+.loan-products {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1368px;
+  font-family: 'Inter', sans-serif;
+  color: #1f2937;
+  margin-bottom: 106px;
+}
+
+.loan-products * {
+  box-sizing: border-box;
+}
+
+.loan-products .section-header {
+  text-align: center;
+  margin-top: 106px;
+  
+}
+
+.loan-products .section-title {
+  color: #1a1a1a;
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+/* Products Grid */
+.loan-products .products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  width: 1368px;
+}
+
+/* Product Card Styling */
+.loan-products .product-card {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #eaeaea;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  min-height: 280px;
+}
+
+.loan-products .product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
+  border-color: #d1d5db;
+}
+
+/* Icon Container */
+.loan-products .card-icon-container {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.loan-products .loan-icon {
+  width: 28px;
+  height: 28px;
+  stroke: #09825d;
+}
+
+/* Typography inside Card */
+.loan-products .product-title {
+  color: #1a1a1a;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.loan-products .product-description {
+  color: #555555;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin-bottom: 24px;
+  flex-grow: 1;
+}
+
+/* Apply Button Styling */
+.loan-products .apply-btn {
+  display: block;
+  text-align: center;
+  width: 100%;
+  border: 1.5px solid #09825d;
+  color: #09825d;
+  text-decoration: none;
+  padding: 10px 24px;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  background-color: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.loan-products .apply-btn:hover {
+  background-color: #09825d;
+  color: #ffffff;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .loan-products .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .loan-products .section-title {
+    font-size: 1.75rem;
+  }
+  
+  .loan-products .products-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .loan-products .product-card {
+    padding: 24px;
+    min-height: auto;
+  }
+}
+
+/* client success stories */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.success-section {
+  min-height: 100vh;
+  background: #f7f7f7;
+  padding: 20px 16px 28px;
+}
+
+.success-container {
+  max-width: 1368px;
+  margin: 0 auto;
+}
+
+.success-title {
+  text-align: center;
+  font-size: 41px;
+  line-height: 1.1;
+  font-weight: 700;
+  color: #1f1f1f;
+  margin: 0 0 36px;
+  letter-spacing: -0.5px;
+}
+
+.success-grid {
+  display: grid;
+  grid-template-columns: 1.03fr 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+.testimonial-card {
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  border-radius: 3px;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
+  border-color: #d1d5db;
+}
+
+.testimonial-card-large {
+  min-height: 332px;
+  padding: 24px 18px 18px 16px;
+}
+
+.testimonial-card-small {
+  min-height: 154px;
+  padding: 18px 15px 16px 15px;
+  margin-bottom: 16px;
+}
+
+.testimonial-card-small:last-child {
+  margin-bottom: 0;
+}
+
+.testimonial-heading {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 500;
+  font-family: 'Space Grotesk', sans-serif;
+  color: #111;
+  letter-spacing: 0.2px;
+}
+
+.quote-icon {
+  margin-top: 20px;
+  color: #198754;
+  font-size: 22px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -4px;
+}
+
+.testimonial-text {
+  color: #5f5f5f;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  line-height: 1.45;
+  margin: 10px 0 0;
+  max-width: 430px;
+}
+
+.testimonial-text-small {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    line-height: 1.35;
+    max-width: 360px;
+    margin-top: 8px;
+}
+
+.author-block {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.author-block-large {
+  position: absolute;
+  left: 16px;
+  bottom: 18px;
+}
+
+.author-top {
+  margin-top: -2px;
+}
+
+.author-avatar {
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
+  background: #eee;
+}
+
+.author-avatar-large {
+  width: 42px;
+  height: 42px;
+}
+
+.author-avatar-small {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+}
+
+.author-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.author-info-small {
+  margin-top: 18px;
+}
+
+.author-name {
+  font-size: 11px;
+  font-weight: 700;
+  color: #222;
+  line-height: 1.2;
+}
+
+.author-role {
+  font-size: 10px;
+  color: #6d6d6d;
+  margin-top: 2px;
+  line-height: 1.2;
+}
+
+.right-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .success-title {
+    font-size: 30px;
+    margin-bottom: 24px;
+  }
+
+  .success-grid {
+    grid-template-columns: 1fr;
+    
+  }
+
+  .testimonial-card-large {
+    min-height: auto;
+    padding-bottom: 80px;
+    height: 465px;
+  }
+
+  .testimonial-text {
+    max-width: 100%;
+  }
+}
+
+/* footer */
+.footer {
+  position: relative;
+  width: 100%;
+  background: #f7f7f7;
+  overflow: hidden;
+  padding: 18px 42px 18px 42px;
+  font-family: Arial, sans-serif;
+}
+
+.footer-top-line {
+  width: 100%;
+  height: 1px;
+  background: #cfcfcf;
+  margin-bottom: 32px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  z-index: 5;
+}
+
+.footer-logo img {
+  width: 95px;
+  object-fit: contain;
+}
+
+.footer-column h4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.footer-column p {
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 14px;
+  cursor: pointer;
+}
+
+.footer-bottom-line {
+  width: 100%;
+  height: 1px;
+  background: #cfcfcf;
+  margin-top: 42px;
+  margin-bottom: 18px;
+  position: relative;
+  z-index: 5;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 5;
+}
+
+.footer-links {
+  display: flex;
+  gap: 36px;
+}
+
+.footer-links span {
+  font-size: 11px;
+  color: #222;
+}
+
+.copyright {
+  font-size: 11px;
+  color: #222;
+}
+
+/* Decorative circles */
+
+.shape-green {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: #98c21d;
+  right: -120px;
+  top: 140px;
+}
+
+.shape-orange {
+  position: absolute;
+  width: 330px;
+  height: 330px;
+  border-radius: 50%;
+  background: #ef870a;
+  right: 20px;
+  bottom: -220px;
+}
+
+.shape-dark-green {
+  position: absolute;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  background: #009b45;
+  right: 100px;
+  bottom: -95px;
+}

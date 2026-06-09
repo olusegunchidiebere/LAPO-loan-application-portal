@@ -1,4 +1,5 @@
 import Topbar from './Components/Topbar';
+import LandingPage from './Pages/LandingPage';
 import './App.css';
 
 function App() {
@@ -6,7 +7,7 @@ function App() {
     <div>
       <Topbar />
       <main>
-        {/* Your main content goes here */}
+        <LandingPage />
       </main>
     </div>
   );

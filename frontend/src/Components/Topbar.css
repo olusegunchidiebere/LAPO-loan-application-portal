@@ -3,16 +3,21 @@
   position: sticky;
   top: 0;
   z-index: 100;
+  display: flex;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .topbar-container {
-  max-width: 1200px;
+  width: 100%;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 0 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 70px;
+  height: 80px;
+  flex-wrap: wrap;
 }
 
 .topbar-logo h1 {
@@ -31,6 +36,7 @@
   font-family: 'Nunito Sans', sans-serif;
   font-weight: 400;
   letter-spacing: 0%;
+  flex-wrap: wrap;
 }
 
 .topbar-nav li {
@@ -66,7 +72,7 @@
 }
 
 .topbar-cta-button {
-  width: 125px;
+  min-width: 125px;
   height: 40px;
   background-color: #EC8020;
   color: white;
@@ -90,13 +96,28 @@
   transform: translateY(0);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .topbar-container {
-    height: 60px;
+    padding: 0 15px;
   }
 
   .topbar-nav {
-    gap: 15px;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .topbar-container {
+    height: 60px;
+    padding: 0 10px;
+  }
+
+  .topbar-nav {
+    gap: 10px;
+    order: 3;
+    width: 100%;
+    margin-top: 10px;
+    justify-content: center;
   }
 
   .topbar-nav a {
@@ -104,6 +125,34 @@
   }
 
   .topbar-logo h1 {
-    font-size: 20px;
+    font-size: 18px;
+  }
+
+  .topbar-cta-button {
+    font-size: 14px;
+    padding: 8px 15px;
+    min-width: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .topbar-nav {
+    gap: 8px;
+    font-size: 11px;
+  }
+
+  .topbar-nav a {
+    font-size: 11px;
+  }
+
+  .topbar-logo h1 {
+    font-size: 16px;
+  }
+
+  .topbar-cta-button {
+    font-size: 12px;
+    padding: 6px 12px;
+    min-width: 90px;
+    height: 36px;
   }
 }
