@@ -1,7 +1,14 @@
 import './Topbar.css';
 import LapoLogo from '../assets/LapoLogo.png';
 export default function Topbar() {
-  const navItems = ['Home', 'About Us', 'Products', 'Sustainability', 'Media', 'Contact Us'];
+  const navItems = [
+    { label: 'Home', href: '/#home' },
+    { label: 'About Us', href: '/#about-us' },
+    { label: 'Products', href: '/#products' },
+    { label: 'Sustainability', href: '/#sustainability' },
+    { label: 'Media', href: '/#footer' },
+    { label: 'Contact Us', href: '/#footer' },
+  ];
 
   return (
     <nav className="topbar">
@@ -12,13 +19,13 @@ export default function Topbar() {
         <ul className="topbar-nav">
           {navItems.map((item, index) => (
             <li key={index}>
-              <a href={`#${item.toLowerCase().replace(/\s+/g, '-')}`}>
-                {item}
+              <a href={item.href}>
+                {item.label}
               </a>
             </li>
           ))}
         </ul>
-        <button className="topbar-cta-button">Get a Loan</button>
+        <a href="/eligibility" className="topbar-cta-button">Get a Loan</a>
       </div>
     </nav>
   );
