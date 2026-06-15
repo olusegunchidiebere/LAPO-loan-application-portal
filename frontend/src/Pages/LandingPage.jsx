@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import '../Components/LandingPage.css';
 import PersonApplyLoan from '../assets/PersonApplyLoan.png';
 import SecurePlatformImg from '../assets/SecurePlatform-img.png';
@@ -46,7 +47,7 @@ function LandingPage() {
                 banking tailored for your needs.<br /></p>
             </div>
             <div>
-                <a href="/eligibility" className="loan-buttons1">Apply Now</a>
+                <Link to="/eligibility" className="loan-buttons1">Apply Now</Link>
                 <button className="loan-buttons2">Check Loan Balance</button>
             </div>
             <section className="why-choose-us" id="about-us">
@@ -180,7 +181,7 @@ function LandingPage() {
                     </div>
                     <h3 className="product-title">Business Loans</h3>
                     <p className="product-description">Capital injection to scale your established business operations.</p>
-                    <a href="/eligibility" className="apply-btn">Apply</a>
+                    <Link to="/eligibility" className="apply-btn">Apply</Link>
                     </article>
 
                     {/* Card 2: SME Loans */}
@@ -193,7 +194,7 @@ function LandingPage() {
                     </div>
                     <h3 className="product-title">SME Loans</h3>
                     <p className="product-description">Tailored support for small and medium enterprises to grow.</p>
-                    <a href="/eligibility" className="apply-btn">Apply</a>
+                    <Link to="/eligibility" className="apply-btn">Apply</Link>
                     </article>
 
                     {/* Card 3: Agricultural Loans */}
@@ -207,7 +208,7 @@ function LandingPage() {
                     </div>
                     <h3 className="product-title">Agricultural Loans</h3>
                     <p className="product-description">Funding designed specifically for farming and agribusiness needs.</p>
-                    <a href="/eligibility" className="apply-btn">Apply</a>
+                    <Link to="/eligibility" className="apply-btn">Apply</Link>
                     </article>
 
                     {/* Card 4: Education Loans */}
@@ -220,7 +221,7 @@ function LandingPage() {
                     </div>
                     <h3 className="product-title">Education Loans</h3>
                     <p className="product-description">Invest in the future with funding for educational institutions or fees.</p>
-                    <a href="/eligibility" className="apply-btn">Apply</a>
+                    <Link to="/eligibility" className="apply-btn">Apply</Link>
                     </article>
 
                     {/* Card 5: Personal Loans */}
@@ -233,7 +234,7 @@ function LandingPage() {
                     </div>
                     <h3 className="product-title">Personal Loans</h3>
                     <p className="product-description">Flexible financing for personal projects, emergencies, or lifestyle needs.</p>
-                    <a href="/eligibility" className="apply-btn">Apply</a>
+                    <Link to="/eligibility" className="apply-btn">Apply</Link>
                     </article>
 
                     {/* Card 6: Group Loans */}
@@ -247,7 +248,7 @@ function LandingPage() {
                     </div>
                     <h3 className="product-title">Group Loans</h3>
                     <p className="product-description">Collaborative funding solutions for cooperatives and joint ventures.</p>
-                    <a href="/eligibility" className="apply-btn">Apply</a>
+                    <Link to="/eligibility" className="apply-btn">Apply</Link>
                     </article>
                 </div>
                 </section>

@@ -34,6 +34,13 @@
   border-radius: 8px;
 }
 
+.form-required-note {
+  margin: 0 0 18px;
+  color: #09825d;
+  font-size: 13px;
+  font-weight: 600;
+}
+
 .eligibility-field {
   display: block;
   margin-bottom: 22px;

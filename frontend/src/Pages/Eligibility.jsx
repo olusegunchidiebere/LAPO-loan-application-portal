@@ -1,6 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import './Eligibility.css';
 
 function Eligibility() {
+  const navigate = useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!event.currentTarget.checkValidity()) {
@@ -8,7 +11,7 @@ function Eligibility() {
       return;
     }
 
-    window.location.href = '/loan-application';
+    navigate('/loan-application');
   };
 
   return (
@@ -22,6 +25,8 @@ function Eligibility() {
       </div>
 
       <form className="eligibility-form" onSubmit={handleSubmit}>
+        <p className="form-required-note">Please fill all required fields to proceed.</p>
+
         <label className="eligibility-field">
           <span>Do you have a business of your own or a shop?</span>
           <select defaultValue="Yes" aria-label="Business or shop ownership" required>

@@ -1,13 +1,15 @@
+import { Link } from 'react-router-dom';
 import './Topbar.css';
 import LapoLogo from '../assets/LapoLogo.png';
+
 export default function Topbar() {
   const navItems = [
-    { label: 'Home', href: '/#home' },
-    { label: 'About Us', href: '/#about-us' },
-    { label: 'Products', href: '/#products' },
-    { label: 'Sustainability', href: '/#sustainability' },
-    { label: 'Media', href: '/#footer' },
-    { label: 'Contact Us', href: '/#footer' },
+    { label: 'Home', to: '/#home' },
+    { label: 'About Us', to: '/#about-us' },
+    { label: 'Products', to: '/#products' },
+    { label: 'Sustainability', to: '/#sustainability' },
+    { label: 'Media', to: '/#footer' },
+    { label: 'Contact Us', to: '/#footer' },
   ];
 
   return (
@@ -19,13 +21,13 @@ export default function Topbar() {
         <ul className="topbar-nav">
           {navItems.map((item, index) => (
             <li key={index}>
-              <a href={item.href}>
+              <Link to={item.to}>
                 {item.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
-        <a href="/eligibility" className="topbar-cta-button">Get a Loan</a>
+        <Link to="/eligibility" className="topbar-cta-button">Get a Loan</Link>
       </div>
     </nav>
   );

@@ -1,5 +1,8 @@
 .loan-application-page {
   min-height: calc(100vh - 88px);
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
   background: #f3f3f3;
   color: #242424;
   padding: 24px 42px 42px;
@@ -8,6 +11,7 @@
 
 .loan-application-shell {
   width: 100%;
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -28,9 +32,28 @@
   background: #d8d8d8;
 }
 
+.loan-app-stepper::after {
+  content: '';
+  position: absolute;
+  top: 18px;
+  left: 22px;
+  width: 0;
+  height: 1px;
+  background: #007f4f;
+  transition: width 0.25s ease;
+}
+
+.loan-app-stepper-1::after {
+  width: calc((100% - 44px) / 2);
+}
+
+.loan-app-stepper-2::after {
+  width: calc(100% - 44px);
+}
+
 .loan-app-step {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -76,6 +99,13 @@
 
 .loan-app-heading {
   margin: 0 0 43px;
+}
+
+.loan-app-required-note {
+  margin: -25px 0 24px;
+  color: #007f4f;
+  font-size: 13px;
+  font-weight: 600;
 }
 
 .loan-app-heading h1 {
@@ -348,6 +378,205 @@
   font-size: 14px;
 }
 
+.loan-step-three .loan-app-heading {
+  margin-bottom: 46px;
+}
+
+.review-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 580px;
+  gap: 32px;
+  align-items: start;
+}
+
+.document-upload-card,
+.review-summary-card {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.045);
+}
+
+.document-upload-card {
+  min-height: 338px;
+  padding: 36px 32px;
+}
+
+.document-upload-card h2,
+.review-summary-header h2 {
+  margin: 0;
+  color: #202124;
+  font-size: 21px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.document-upload-card p {
+  max-width: 560px;
+  margin: 14px 0 24px;
+  color: #4b5563;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.passport-upload-box {
+  display: flex;
+  min-height: 161px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px dashed #9eb5a7;
+  border-radius: 4px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.passport-upload-box input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.passport-upload-box .loan-app-card-icon {
+  width: 30px;
+  height: 30px;
+  stroke: #6b756d;
+  margin-bottom: 13px;
+}
+
+.passport-upload-box strong {
+  color: #111827;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.passport-upload-box span {
+  margin-top: 4px;
+  color: #111827;
+  font-size: 10px;
+}
+
+.passport-upload-box-complete {
+  border-style: solid;
+  border-color: #008d4b;
+  background: #f2faf6;
+}
+
+.passport-upload-box-complete .loan-app-card-icon {
+  stroke: #008d4b;
+}
+
+.passport-upload-box-complete span {
+  color: #008d4b;
+  font-weight: 700;
+}
+
+.review-summary-card {
+  min-height: 632px;
+  padding: 36px 32px;
+}
+
+.review-summary-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 22px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.review-summary-header button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: 0;
+  background: transparent;
+  color: #008d4b;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.review-summary-header .loan-app-card-icon {
+  width: 12px;
+  height: 12px;
+}
+
+.review-summary-section {
+  margin-top: 26px;
+}
+
+.review-summary-section h3 {
+  margin: 0 0 13px;
+  color: #4b5563;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.review-summary-block {
+  padding: 18px 16px;
+  background: #fbf9f8;
+}
+
+.review-summary-loan {
+  background: #f0f8f4;
+  border: 1px solid #dbe9e1;
+  border-radius: 5px;
+}
+
+.review-summary-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 32px;
+}
+
+.review-summary-row span {
+  color: #4b5563;
+  font-size: 12px;
+}
+
+.review-summary-row strong {
+  color: #111827;
+  font-size: 11px;
+  font-weight: 800;
+  text-align: right;
+}
+
+.review-summary-row-large {
+  min-height: 42px;
+}
+
+.review-summary-row-large strong {
+  color: #008d4b;
+  font-size: 22px;
+}
+
+.confirmation-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  margin: 84px 0 0 14px;
+  color: #4b5563;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.confirmation-check input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: #008d4b;
+  flex: 0 0 auto;
+}
+
+.review-actions {
+  padding-top: 24px;
+}
+
 .secure-application-note {
   display: flex;
   gap: 16px;
@@ -406,5 +635,19 @@
 
   .loan-app-card {
     padding: 24px 18px;
+  }
+
+  .review-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .review-summary-card,
+  .document-upload-card {
+    min-height: auto;
+    padding: 24px 18px;
+  }
+
+  .confirmation-check {
+    margin-left: 0;
   }
 }
