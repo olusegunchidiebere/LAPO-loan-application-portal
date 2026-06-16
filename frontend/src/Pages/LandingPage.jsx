@@ -8,6 +8,7 @@ import circle from '../assets/circle.png';
 import AminaBello from '../assets/AminaBello-img.png';
 import MichaelOkoro from '../assets/MichaelOkoro-img.png';
 import SarahJohnson from '../assets/SarahJohnson-img.png';
+
 const testimonials = [
   {
     title: "SMOOTH PROCESS",
@@ -48,7 +49,7 @@ function LandingPage() {
             </div>
             <div>
                 <Link to="/eligibility" className="loan-buttons1">Apply Now</Link>
-                <button className="loan-buttons2">Check Loan Balance</button>
+                <Link to="/check-balance" className="loan-buttons2">Check Loan Balance</Link>
             </div>
             <section className="why-choose-us" id="about-us">
             <header className="section-header">
