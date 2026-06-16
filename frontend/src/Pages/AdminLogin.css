@@ -1,0 +1,291 @@
+/* ── Reset ── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+/* ── Root Layout ── */
+.login-root {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+}
+
+/* ════════════════════════
+   LEFT PANEL
+════════════════════════ */
+.login-left {
+  position: relative;
+  flex: 0 0 50%;
+  background-size: cover;
+  background-position: top center;
+  background-color: #0d2b1a;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px;
+}
+
+/* black gradient overlay (from Figma: #000000 0% → #000000) */
+.login-left__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.85) 100%
+  );
+  z-index: 0;
+}
+
+/* brand + hero sit above overlay */
+.login-left__brand,
+.login-left__hero {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Logo + STAFF PORTAL ── */
+.login-left__brand {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.login-left__logo {
+  width: 127px;
+  height: 44px;
+  object-fit: contain;
+}
+
+/* STAFF PORTAL — from Figma image 1 */
+.login-left__portal-sub {
+  margin-top: 10px;
+  color: #006B3F;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ── Hero text (bottom left) ── */
+/* "Institutional Trust & Security." — from Figma image 3 */
+.login-left__heading {
+  color: #FFFFFF;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 60px;
+  letter-spacing: -0.96px;
+  margin: 0 0 16px;
+}
+
+/* paragraph — from Figma image 4 */
+.login-left__sub {
+  color: rgba(255, 255, 255, 0.80);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+  max-width: 380px;
+}
+
+/* ════════════════════════
+   RIGHT PANEL
+════════════════════════ */
+.login-right {
+  flex: 0 0 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  padding: 2rem;
+}
+
+/* form card — Figma image 5: width 448px */
+.login-form {
+  width: 448px;
+}
+
+/* "Welcome back" — Figma image 5 */
+.login-form__heading {
+  color: #1B1C1C;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 48px;
+  margin: 0 0 4px;
+}
+
+/* subtitle */
+.login-form__sub {
+  color: #3E4A41;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 0 0 28px;
+}
+
+/* ── Labels — Figma image 6 ── */
+.login-form__label {
+  display: block;
+  color: #3E4A41;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0.14px;
+  margin-bottom: 6px;
+  margin-top: 20px;
+}
+
+/* ── Input wrapper ── */
+.login-form__input-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid #D1D5DB;
+  border-radius: 8px;
+  padding: 0 14px;
+  background-color: #fff;
+  transition: border-color 0.2s;
+}
+
+.login-form__input-wrapper:focus-within {
+  border-color: #006B3F;
+}
+
+.login-form__input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  color: #1B1C1C;
+  padding: 12px 8px;
+  background: transparent;
+}
+
+.login-form__input::placeholder {
+  color: #9CA3AF;
+}
+
+/* icons inside input */
+.input-icon {
+  width: 16px;
+  height: 16px;
+  color: #9CA3AF;
+  flex-shrink: 0;
+  margin-right: 8px;
+}
+
+.eye-icon {
+  width: 16px;
+  height: 16px;
+  color: #9CA3AF;
+}
+
+.login-form__eye-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  color: #9CA3AF;
+}
+
+/* ── Remember me row ── */
+.login-form__remember-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.login-form__check-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  color: #3E4A41;
+  cursor: pointer;
+}
+
+.login-form__checkbox {
+  accent-color: #006B3F;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
+
+.login-form__forgot-btn {
+  background: none;
+  border: none;
+  color: #006B3F;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+}
+
+.login-form__forgot-btn:hover {
+  text-decoration: underline;
+}
+
+/* ── Secure Login button ── */
+.login-form__submit-btn {
+  width: 100%;
+  margin-top: 28px;
+  padding: 14px;
+  background-color: #006B3F;
+  color: #ffffff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color 0.2s;
+}
+
+.login-form__submit-btn:hover {
+  background-color: #005432;
+}
+
+.btn-icon {
+  width: 15px;
+  height: 15px;
+}
+
+/* ── Secure Institutional Access ── */
+.login-form__secure-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 40px;
+  color: #9CA3AF;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+}
+
+.shield-icon {
+  width: 14px;
+  height: 14px;
+  color: #9CA3AF;
+}
