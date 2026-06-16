@@ -81,7 +81,8 @@
     width: 207px;
     background-color: white;
     color: #008D4B;
-    border: 1px;
+    border: 2px solid #1a8a3c;
+    padding: 12px 24px;
     border-color: #008D4B;
     border-radius: 8px;
     font-family: 'Nunito Sans', sans-serif;
@@ -89,10 +90,12 @@
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    text-decoration: none;
 }
 
 .loan-buttons2:hover {
     background-color: white;
+     box-shadow: 0 4px 12px rgba(0, 141, 75, 0.3);
     transform: translateY(-2px);
 }
 

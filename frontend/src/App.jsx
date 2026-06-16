@@ -4,6 +4,7 @@ import Topbar from './Components/Topbar';
 import LandingPage from './Pages/LandingPage';
 import Eligibility from './Pages/Eligibility';
 import LoanApplication from './Pages/LoanApplication';
+import LoanBalance from './Pages/LoanBalance'
 import './App.css';
 import VerificationDashboard from './Pages/Admin/VerificationDashboard';
 
@@ -38,6 +39,7 @@ function App() {
           <Route path="/Admin/VerificationDashboard" element={<VerificationDashboard />} />
           <Route path="/admin/dashboard" element={<VerificationDashboard />} />
           <Route path="/admin/verificationdashboard" element={<VerificationDashboard />} />
+          <Route path="/check-balance" element={<LoanBalance />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
