@@ -1,0 +1,353 @@
+/* ── Page Layout ── */
+.clb-page {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+/* ── Left Panel ── */
+.clb-left {
+  width: 45%;
+  background: linear-gradient(160deg, #0a0a0a 0%, #1a1a1a 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.clb-left::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('../assets/loanbalance.png') center/cover no-repeat;
+  opacity: 0.35;
+}
+
+.clb-left-content {
+  position: relative;
+  z-index: 1;
+}
+
+.clb-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 48px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.clb-logo-icon {
+  font-size: 28px;
+}
+
+.clb-logo-text {
+  font-size: 22px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+
+.clb-hero-title {
+  font-size: 36px;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.2;
+  margin: 0 0 16px 0;
+}
+
+.clb-hero-subtitle {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.6;
+  margin: 0;
+  max-width: 320px;
+}
+
+/* ── Right Panel ── */
+.clb-right {
+  width: 55%;
+  background: #f7f8fa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 40px;
+  gap: 24px;
+}
+
+/* ── Form Card ── */
+.clb-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 40px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+}
+
+.clb-card-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #111;
+  margin: 0 0 8px 0;
+}
+
+.clb-card-subtitle {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+  margin: 0 0 28px 0;
+}
+
+/* ── Form ── */
+.clb-form-group {
+  margin-bottom: 20px;
+}
+
+.clb-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.clb-input-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 0 14px;
+  background: #fafafa;
+  transition: border-color 0.2s;
+}
+
+.clb-input-wrapper:focus-within {
+  border-color: #1a8a3c;
+  background: #fff;
+}
+
+.clb-input-icon {
+  font-size: 16px;
+  margin-right: 10px;
+  opacity: 0.5;
+}
+
+.clb-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 14px 0;
+  font-size: 14px;
+  color: #111;
+}
+
+.clb-input::placeholder {
+  color: #aaa;
+}
+
+.clb-error {
+  margin: 8px 0 0 0;
+  font-size: 13px;
+  color: #d32f2f;
+}
+
+/* ── Button ── */
+.clb-btn {
+  width: 100%;
+  padding: 15px;
+  background: #1a8a3c;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.clb-btn:hover:not(:disabled) {
+  background: #156e30;
+}
+
+.clb-btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.clb-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.clb-btn-loading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.clb-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Footer ── */
+.clb-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.clb-back-link {
+  font-size: 13px;
+  color: #555;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.clb-back-link:hover {
+  color: #1a8a3c;
+}
+
+.clb-secure-badge {
+  font-size: 12px;
+  color: #1a8a3c;
+  font-weight: 500;
+  background: #eaf7ee;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+
+/* ── Result Card ── */
+.clb-result {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 28px 32px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+  animation: fadeUp 0.3s ease;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.clb-result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 6px;
+}
+
+.clb-result-identity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.clb-result-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111;
+  margin: 0;
+}
+
+.clb-result-account {
+  font-size: 13px;
+  color: #777;
+  margin: 0 0 20px 0;
+}
+
+/* ── Badges ── */
+.clb-badge {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.clb-badge-verified {
+  background: #eaf7ee;
+  color: #1a8a3c;
+}
+
+.clb-badge-active {
+  background: #eaf7ee;
+  color: #1a8a3c;
+}
+
+/* ── Balance Card ── */
+.clb-balance-card {
+  background: #f7f8fa;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.clb-balance-label {
+  font-size: 12px;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 8px 0;
+}
+
+.clb-balance-amount {
+  font-size: 32px;
+  font-weight: 800;
+  color: #1a8a3c;
+  margin: 0;
+}
+
+.clb-balance-icon {
+  font-size: 48px;
+  opacity: 0.15;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .clb-page {
+    flex-direction: column;
+  }
+
+  .clb-left {
+    width: 100%;
+    min-height: 200px;
+    padding: 32px 24px;
+    align-items: flex-end;
+  }
+
+  .clb-hero-title {
+    font-size: 26px;
+  }
+
+  .clb-right {
+    width: 100%;
+    padding: 32px 20px;
+  }
+
+  .clb-balance-amount {
+    font-size: 24px;
+  }
+}

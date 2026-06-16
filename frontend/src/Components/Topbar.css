@@ -1,0 +1,162 @@
+.topbar {
+  background-color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.topbar-container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  flex-wrap: wrap;
+}
+
+.topbar-logo h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+  color: #1a5c1a;
+}
+
+.topbar-nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 30px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0%;
+  flex-wrap: wrap;
+}
+
+.topbar-nav li {
+  margin: 0;
+}
+
+.topbar-nav a {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.topbar-nav a:hover {
+  color: #1a5c1a;
+}
+
+.topbar-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #EC8020;
+  transition: width 0.3s ease;
+}
+
+.topbar-nav a:hover::after {
+  width: 100%;
+}
+
+.topbar-cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 125px;
+  height: 40px;
+  background-color: #EC8020;
+  color: white;
+  text-decoration: none;
+  border: none;
+  padding: 10px 20px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  white-space: nowrap;
+}
+
+.topbar-cta-button:hover {
+  background-color: #146d14;
+  transform: translateY(-2px);
+}
+
+.topbar-cta-button:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 1024px) {
+  .topbar-container {
+    padding: 0 15px;
+  }
+
+  .topbar-nav {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .topbar-container {
+    height: 60px;
+    padding: 0 10px;
+  }
+
+  .topbar-nav {
+    gap: 10px;
+    order: 3;
+    width: 100%;
+    margin-top: 10px;
+    justify-content: center;
+  }
+
+  .topbar-nav a {
+    font-size: 12px;
+  }
+
+  .topbar-logo h1 {
+    font-size: 18px;
+  }
+
+  .topbar-cta-button {
+    font-size: 14px;
+    padding: 8px 15px;
+    min-width: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .topbar-nav {
+    gap: 8px;
+    font-size: 11px;
+  }
+
+  .topbar-nav a {
+    font-size: 11px;
+  }
+
+  .topbar-logo h1 {
+    font-size: 16px;
+  }
+
+  .topbar-cta-button {
+    font-size: 12px;
+    padding: 6px 12px;
+    min-width: 90px;
+    height: 36px;
+  }
+}
