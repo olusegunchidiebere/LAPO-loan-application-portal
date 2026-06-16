@@ -16,7 +16,7 @@ class LoanBalanceView(APIView):
 
         try:
             account = LoanAccount.objects.get(
-                Q(ippis_number=identifier) | Q(oracle_number=identifier)
+                Q(ippis_number__iexact=identifier) | Q(oracle_number__iexact=identifier)
             )
             return Response({
                 "found": True,
