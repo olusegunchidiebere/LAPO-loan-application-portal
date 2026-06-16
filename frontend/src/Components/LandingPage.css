@@ -26,6 +26,7 @@
 
 .PersonLoan {
     width: 580px;
+    max-width: 100%;
     height: 432px;
     margin-top: 66px;
     margin-right: 20px;
@@ -45,6 +46,9 @@
 }
 
 .loan-buttons1 {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     margin-top: 48px;
     margin-left: 20px;
     height: 54px;
@@ -57,6 +61,7 @@
     font-family: 'Nunito Sans', sans-serif;
     font-size: 16px;
     font-weight: 600;
+    text-decoration: none;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
@@ -827,9 +832,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 1368px;
+  width: min(100%, 1368px);
+  max-width: 100%;
   font-family: 'Inter', sans-serif;
   color: #1f2937;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 106px;
 }
 
@@ -856,7 +864,9 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-  width: 1368px;
+  width: 100%;
+  max-width: 1368px;
+  padding: 0 16px;
 }
 
 /* Product Card Styling */
@@ -1141,11 +1151,15 @@ body {
 /* footer */
 .footer {
   position: relative;
-  width: 100%;
+  width: min(100%, 1404px);
+  min-height: 547px;
+  margin: 0 auto;
   background: #f7f7f7;
   overflow: hidden;
   padding: 18px 42px 18px 42px;
   font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
 }
 
 .footer-top-line {
@@ -1159,6 +1173,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  gap: 36px;
   position: relative;
   z-index: 5;
 }
@@ -1168,6 +1183,10 @@ body {
   object-fit: contain;
 }
 
+.footer-column {
+  margin-left: 0;
+  min-width: max-content;
+}
 .footer-column h4 {
   font-size: 18px;
   font-weight: 600;
@@ -1196,6 +1215,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: auto;
   position: relative;
   z-index: 5;
 }
@@ -1218,13 +1238,20 @@ body {
 /* Decorative circles */
 
 .shape-green {
+  width: 560px;
+  height: 277px;
   position: absolute;
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
-  background: #98c21d;
-  right: -120px;
-  top: 140px;
+  right: -24px;
+  bottom: -34px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.shape-green img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 .shape-orange {

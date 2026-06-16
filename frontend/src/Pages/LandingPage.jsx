@@ -1,9 +1,13 @@
+import { Link } from 'react-router-dom';
 import '../Components/LandingPage.css';
 import PersonApplyLoan from '../assets/PersonApplyLoan.png';
 import SecurePlatformImg from '../assets/SecurePlatform-img.png';
 import SimpleProcessImg from '../assets/simpleProcess-img.png';
 import LapoLogo from '../assets/LapoLogo.png';
-
+import circle from '../assets/circle.png';
+import AminaBello from '../assets/AminaBello-img.png';
+import MichaelOkoro from '../assets/MichaelOkoro-img.png';
+import SarahJohnson from '../assets/SarahJohnson-img.png';
 const testimonials = [
   {
     title: "SMOOTH PROCESS",
@@ -11,7 +15,7 @@ const testimonials = [
       "The online process was incredibly smooth. I applied for an SME loan and received approval within days. It transformed my business operations.",
     name: "Sarah Johnson",
     role: "SME Owner",
-    avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+    avatar: SarahJohnson,
     large: true,
   },
   {
@@ -19,21 +23,21 @@ const testimonials = [
       "The group loan we secured through the portal allowed our cooperative to buy new equipment. Highly recommend their transparent process.",
     name: "Amina Bello",
     role: "Cooperative Leader",
-    avatar: "https://randomuser.me/api/portraits/women/68.jpg",
+    avatar: AminaBello,
   },
   {
     quote:
       "I needed quick funds for a personal emergency, and LAPO's digital platform made it hassle-free. Secure and efficient.",
     name: "Michael Okoro",
     role: "Personal Loan Client",
-    avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+    avatar: MichaelOkoro,
   },
 ];
 
 function LandingPage() {
     return (
         <div className="landingPage-container">
-            <div className="first-box">
+            <div className="first-box" id="home">
                 <h1 className="FirstBox-header">Apply For Your <span className="omo">LAPO</span> Loan Anywhere, Anytime</h1>
                 <img src={PersonApplyLoan} alt="PersonApplyingLoan" className="PersonLoan" />
             </div>
@@ -43,10 +47,10 @@ function LandingPage() {
                 banking tailored for your needs.<br /></p>
             </div>
             <div>
-                <button className="loan-buttons1">Apply Now</button>
+                <Link to="/eligibility" className="loan-buttons1">Apply Now</Link>
                 <button className="loan-buttons2">Check Loan Balance</button>
             </div>
-            <section className="why-choose-us">
+            <section className="why-choose-us" id="about-us">
             <header className="section-header">
                 <p className="section-tagline">WHY CHOOSE US</p>
                 <h2 className="section-title">Everything You Need to Apply With Confidence</h2>
@@ -162,7 +166,7 @@ function LandingPage() {
                 </article>
             </div>
             </section>
-                <section className="loan-products">
+                <section className="loan-products" id="products">
                 <header className="section-header">
                     <h2 className="section-title">Our Loan Products</h2>
                 </header>
@@ -177,7 +181,7 @@ function LandingPage() {
                     </div>
                     <h3 className="product-title">Business Loans</h3>
                     <p className="product-description">Capital injection to scale your established business operations.</p>
-                    <a href="#" className="apply-btn">Apply</a>
+                    <Link to="/eligibility" className="apply-btn">Apply</Link>
                     </article>
 
                     {/* Card 2: SME Loans */}
@@ -190,7 +194,7 @@ function LandingPage() {
                     </div>
                     <h3 className="product-title">SME Loans</h3>
                     <p className="product-description">Tailored support for small and medium enterprises to grow.</p>
-                    <a href="#" className="apply-btn">Apply</a>
+                    <Link to="/eligibility" className="apply-btn">Apply</Link>
                     </article>
 
                     {/* Card 3: Agricultural Loans */}
@@ -204,7 +208,7 @@ function LandingPage() {
                     </div>
                     <h3 className="product-title">Agricultural Loans</h3>
                     <p className="product-description">Funding designed specifically for farming and agribusiness needs.</p>
-                    <a href="#" className="apply-btn">Apply</a>
+                    <Link to="/eligibility" className="apply-btn">Apply</Link>
                     </article>
 
                     {/* Card 4: Education Loans */}
@@ -217,7 +221,7 @@ function LandingPage() {
                     </div>
                     <h3 className="product-title">Education Loans</h3>
                     <p className="product-description">Invest in the future with funding for educational institutions or fees.</p>
-                    <a href="#" className="apply-btn">Apply</a>
+                    <Link to="/eligibility" className="apply-btn">Apply</Link>
                     </article>
 
                     {/* Card 5: Personal Loans */}
@@ -230,7 +234,7 @@ function LandingPage() {
                     </div>
                     <h3 className="product-title">Personal Loans</h3>
                     <p className="product-description">Flexible financing for personal projects, emergencies, or lifestyle needs.</p>
-                    <a href="#" className="apply-btn">Apply</a>
+                    <Link to="/eligibility" className="apply-btn">Apply</Link>
                     </article>
 
                     {/* Card 6: Group Loans */}
@@ -244,12 +248,12 @@ function LandingPage() {
                     </div>
                     <h3 className="product-title">Group Loans</h3>
                     <p className="product-description">Collaborative funding solutions for cooperatives and joint ventures.</p>
-                    <a href="#" className="apply-btn">Apply</a>
+                    <Link to="/eligibility" className="apply-btn">Apply</Link>
                     </article>
                 </div>
                 </section>
                 {/* client success stories*/}
-            <section className="success-section">
+            <section className="success-section" id="sustainability">
             <div className="success-container">
                 <h2 className="success-title">Client Success Stories</h2>
 
@@ -319,7 +323,7 @@ function LandingPage() {
             </div>
             </section>
             {/* footer */}
-            <footer className="footer">
+            <footer className="footer" id="footer">
             <div className="footer-top-line"></div>
 
             <div className="footer-content">
@@ -386,10 +390,10 @@ function LandingPage() {
                 © 2025 LAPO. All rights reserved.
                 </div>
             </div>
-
-            <div className="shape-green"></div>
-            <div className="shape-orange"></div>
-            <div className="shape-dark-green"></div>
+            <div className="shape-green">
+                <img src={circle} alt="circle" />
+            </div>
+            
             </footer>
         </div>
     );

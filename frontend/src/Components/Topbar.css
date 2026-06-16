@@ -72,10 +72,14 @@
 }
 
 .topbar-cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-width: 125px;
   height: 40px;
   background-color: #EC8020;
   color: white;
+  text-decoration: none;
   border: none;
   padding: 10px 20px;
   font-family: 'Nunito Sans', sans-serif;
