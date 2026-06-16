@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './LoanApplication.css';
 
 const steps = ['Personal Info', 'Loan Details', 'Review'];
+const APPLICATIONS_STORAGE_KEY = 'lapoLoanApplications';
 
 const initialApplicationData = {
   loanType: 'New Loan',
@@ -106,6 +107,20 @@ function Field({ label, children, full = false }) {
 
 function getFormValues(form) {
   return Object.fromEntries(new FormData(form).entries());
+}
+
+function fileToDataUrl(file) {
+  return new Promise((resolve, reject) => {
+    if (!file || !file.type.startsWith('image/')) {
+      resolve('');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = () => reject(reader.error);
+    reader.readAsDataURL(file);
+  });
 }
 
 function formatAmount(value) {
@@ -416,7 +431,7 @@ function ReviewSummary({ data, onEdit }) {
   );
 }
 
-function ReviewStep({ data, onPrevious, onEdit }) {
+function ReviewStep({ data, onPrevious, onEdit, onSubmit }) {
   const [passportFile, setPassportFile] = useState(null);
 
   const handleFileChange = (event) => {
@@ -424,7 +439,7 @@ function ReviewStep({ data, onPrevious, onEdit }) {
   };
 
   return (
-    <form className="loan-step-three">
+    <form className="loan-step-three" onSubmit={onSubmit}>
       <div className="loan-app-heading">
         <h1>Loan Application</h1>
         <p>Step 3 of 3: Loan Details &amp; Next of Kin</p>
@@ -436,7 +451,7 @@ function ReviewStep({ data, onPrevious, onEdit }) {
           <p>Please upload clear, legible copies of the required documents. Supported formats: JPG, PNG, PDF (Max 5MB each).</p>
 
           <label className={`passport-upload-box${passportFile ? ' passport-upload-box-complete' : ''}`}>
-            <input type="file" accept=".jpg,.jpeg,.png,.pdf" onChange={handleFileChange} required />
+            <input name="passportPhoto" type="file" accept=".jpg,.jpeg,.png,.pdf" onChange={handleFileChange} required />
             <SectionIcon type={passportFile ? 'check' : 'image'} />
             <strong>Passport Photo</strong>
             <span>{passportFile ? passportFile.name : 'Click or drag file here'}</span>
@@ -478,6 +493,36 @@ function LoanApplication() {
     setActiveStep((step) => Math.max(step - 1, 0));
   };
 
+  const handleFinalSubmit = async (event) => {
+    event.preventDefault();
+    if (!event.currentTarget.checkValidity()) {
+      event.currentTarget.reportValidity();
+      return;
+    }
+
+    const passportFile = event.currentTarget.elements.passportPhoto.files?.[0];
+    const passportPreviewUrl = await fileToDataUrl(passportFile);
+    const submittedAt = new Date();
+    const savedApplications = JSON.parse(localStorage.getItem(APPLICATIONS_STORAGE_KEY) || '[]');
+    const applicationRecord = {
+      ...applicationData,
+      id: `APP-${submittedAt.getFullYear()}-${String(submittedAt.getTime()).slice(-4)}`,
+      status: 'Pending',
+      submittedAt: submittedAt.toISOString(),
+      passportFileName: passportFile?.name || '',
+      passportFileType: passportFile?.type || '',
+      passportPreviewUrl,
+    };
+
+    localStorage.setItem(
+      APPLICATIONS_STORAGE_KEY,
+      JSON.stringify([applicationRecord, ...savedApplications])
+    );
+    setApplicationData(initialApplicationData);
+    setActiveStep(0);
+    alert('Application submitted successfully.');
+  };
+
   return (
     <section className="loan-application-page">
       <div className="loan-application-shell">
@@ -495,7 +540,14 @@ function LoanApplication() {
 
         {activeStep === 0 && <PersonalInfoStep data={applicationData} onNext={saveAndGoNext} />}
         {activeStep === 1 && <LoanDetailsStep data={applicationData} onPrevious={goPrevious} onNext={saveAndGoNext} />}
-        {activeStep === 2 && <ReviewStep data={applicationData} onPrevious={goPrevious} onEdit={() => setActiveStep(0)} />}
+        {activeStep === 2 && (
+          <ReviewStep
+            data={applicationData}
+            onPrevious={goPrevious}
+            onEdit={() => setActiveStep(0)}
+            onSubmit={handleFinalSubmit}
+          />
+        )}
       </div>
     </section>
   );

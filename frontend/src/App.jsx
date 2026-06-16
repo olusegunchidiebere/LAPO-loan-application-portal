@@ -25,10 +25,13 @@ function ScrollToHash() {
 }
 
 function App() {
+  const { pathname } = useLocation();
+  const isAdminPage = pathname.toLowerCase().startsWith('/admin');
+
   return (
     <div>
       <ScrollToHash />
-      <Topbar />
+      {!isAdminPage && <Topbar />}
       <main>
         <Routes>
           <Route path="/" element={<LandingPage />} />
