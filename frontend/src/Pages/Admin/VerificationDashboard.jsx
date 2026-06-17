@@ -16,7 +16,10 @@ const statusIcons = {
 
 function readApplications() {
   try {
-    return JSON.parse(localStorage.getItem(APPLICATIONS_STORAGE_KEY) || '[]');
+    const applications = JSON.parse(localStorage.getItem(APPLICATIONS_STORAGE_KEY) || '[]');
+    return Array.isArray(applications)
+      ? applications.filter((application) => application && typeof application === 'object')
+      : [];
   } catch {
     return [];
   }
@@ -33,11 +36,17 @@ function formatAmount(value) {
 
 function formatDate(value) {
   if (!value) return '-';
+  const date = new Date(value);
+
+  if (Number.isNaN(date.getTime())) {
+    return '-';
+  }
+
   return new Intl.DateTimeFormat('en-US', {
     month: 'short',
     day: 'numeric',
     year: 'numeric',
-  }).format(new Date(value));
+  }).format(date);
 }
 
 function StatusBadge({ status }) {
@@ -122,13 +131,29 @@ export default function VerificationDashboard() {
       return;
     }
 
+    const allApplications = readApplications();
     const updatedApplications = applications.map((application) =>
       application.id === selectedApplication.id
-        ? { ...application, status, rejectionReason: status === 'Rejected' ? rejectionReason : '' }
+        ? {
+            ...application,
+            status,
+            rejectionReason: status === 'Rejected' ? rejectionReason : '',
+            verifiedAt: status === 'Verified' ? new Date().toISOString() : application.verifiedAt,
+          }
+        : application
+    );
+    const persistedApplications = allApplications.map((application) =>
+      application.id === selectedApplication.id
+        ? {
+            ...application,
+            status,
+            rejectionReason: status === 'Rejected' ? rejectionReason : '',
+            verifiedAt: status === 'Verified' ? new Date().toISOString() : application.verifiedAt,
+          }
         : application
     );
 
-    localStorage.setItem(APPLICATIONS_STORAGE_KEY, JSON.stringify(updatedApplications));
+    localStorage.setItem(APPLICATIONS_STORAGE_KEY, JSON.stringify(persistedApplications));
     setApplications(updatedApplications);
     setSelectedApplicationId(null);
     setRejectionReason('');

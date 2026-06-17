@@ -9,6 +9,55 @@ const initialApplicationData = {
   sex: 'Male',
 };
 
+function readSavedApplications() {
+  try {
+    const applications = JSON.parse(localStorage.getItem(APPLICATIONS_STORAGE_KEY) || '[]');
+    return Array.isArray(applications)
+      ? applications.filter((application) => application && typeof application === 'object')
+      : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveApplicationRecord(applicationRecord, savedApplications) {
+  const nextApplications = [applicationRecord, ...savedApplications];
+
+  try {
+    localStorage.setItem(APPLICATIONS_STORAGE_KEY, JSON.stringify(nextApplications));
+    return { saved: true, previewSaved: true };
+  } catch {
+    const recordWithoutPreview = {
+      ...applicationRecord,
+      passportPreviewUrl: '',
+      passportPreviewUnavailableReason: 'Preview was too large to save locally.',
+    };
+
+    try {
+      localStorage.setItem(
+        APPLICATIONS_STORAGE_KEY,
+        JSON.stringify([recordWithoutPreview, ...savedApplications])
+      );
+      return { saved: true, previewSaved: false };
+    } catch {
+      const savedApplicationsWithoutPreviews = savedApplications.map((application) => ({
+        ...application,
+        passportPreviewUrl: '',
+      }));
+
+      try {
+        localStorage.setItem(
+          APPLICATIONS_STORAGE_KEY,
+          JSON.stringify([recordWithoutPreview, ...savedApplicationsWithoutPreviews])
+        );
+        return { saved: true, previewSaved: false };
+      } catch {
+        return { saved: false, previewSaved: false };
+      }
+    }
+  }
+}
+
 function SectionIcon({ type }) {
   const paths = {
     loan: (
@@ -503,7 +552,7 @@ function LoanApplication() {
     const passportFile = event.currentTarget.elements.passportPhoto.files?.[0];
     const passportPreviewUrl = await fileToDataUrl(passportFile);
     const submittedAt = new Date();
-    const savedApplications = JSON.parse(localStorage.getItem(APPLICATIONS_STORAGE_KEY) || '[]');
+    const savedApplications = readSavedApplications();
     const applicationRecord = {
       ...applicationData,
       id: `APP-${submittedAt.getFullYear()}-${String(submittedAt.getTime()).slice(-4)}`,
@@ -514,13 +563,20 @@ function LoanApplication() {
       passportPreviewUrl,
     };
 
-    localStorage.setItem(
-      APPLICATIONS_STORAGE_KEY,
-      JSON.stringify([applicationRecord, ...savedApplications])
-    );
+    const saveResult = saveApplicationRecord(applicationRecord, savedApplications);
+
+    if (!saveResult.saved) {
+      alert('Application could not be saved because browser storage is full. Please clear old saved applications and try again.');
+      return;
+    }
+
     setApplicationData(initialApplicationData);
     setActiveStep(0);
-    alert('Application submitted successfully.');
+    alert(
+      saveResult.previewSaved
+        ? 'Application submitted successfully.'
+        : 'Application submitted successfully, but the passport preview was too large to save locally.'
+    );
   };
 
   return (

@@ -1,0 +1,496 @@
+.dd-page {
+  min-height: 100vh;
+  background: #f3f3f3;
+  color: #202124;
+  padding: 32px 36px 48px;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+}
+
+.dd-header {
+  width: min(1368px, 100%);
+  height: 66px;
+  margin: 0 auto 46px;
+  display: grid;
+  grid-template-columns: 188px 1fr auto;
+  align-items: center;
+  gap: 42px;
+  background: #ffffff;
+  border-radius: 6px;
+  padding: 0 16px 0 20px;
+}
+
+.dd-brand img {
+  display: block;
+  width: 104px;
+  height: auto;
+}
+
+.dd-heading h1 {
+  margin: 0;
+  color: #202124;
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.dd-heading p {
+  margin: 7px 0 0;
+  color: #4f5a55;
+  font-size: 13px;
+}
+
+.dd-refresh-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  border: 0;
+  border-radius: 5px;
+  background: #00743f;
+  color: #ffffff;
+  padding: 0 16px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.dd-stats-grid {
+  width: min(1368px, 100%);
+  margin: 0 auto 48px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.dd-stat-card,
+.dd-month-card {
+  min-height: 190px;
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 12px 26px rgba(32, 33, 36, 0.07);
+}
+
+.dd-stat-card {
+  background: #ffffff;
+  border: 1px solid #e7e7e7;
+  display: flex;
+  flex-direction: column;
+}
+
+.dd-stat-card-top,
+.dd-month-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.dd-stat-icon-box,
+.dd-month-top span {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dd-stat-icon-box--pending {
+  background: #ffddb3;
+}
+
+.dd-stat-icon-box--verified {
+  background: transparent;
+}
+
+.dd-stat-icon {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}
+
+.dd-stat-icon-box--pending .dd-stat-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.dd-stat-badge,
+.dd-month-top small {
+  border-radius: 4px;
+  background: #eeeeee;
+  color: #4f5653;
+  padding: 5px 9px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.dd-stat-label {
+  color: #45504b;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.dd-stat-card strong {
+  margin-top: 14px;
+  color: #202124;
+  font-size: 38px;
+  line-height: 1;
+}
+
+.dd-stat-card small {
+  margin-top: 18px;
+  color: #00743f;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.dd-month-card {
+  background: #00743f;
+  color: #ffffff;
+}
+
+.dd-month-top span {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.dd-month-top small {
+  background: rgba(255, 255, 255, 0.2);
+  color: #d8f7e7;
+}
+
+.dd-month-card p {
+  margin: 16px 0 12px;
+  color: #88e7b5;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.dd-month-card strong {
+  display: block;
+  font-size: 32px;
+  line-height: 1;
+}
+
+.dd-month-card > span {
+  display: block;
+  margin-top: 22px;
+  color: #baf3d3;
+  font-size: 16px;
+}
+
+.dd-queue {
+  width: min(1368px, 100%);
+  margin: 0 auto;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.dd-queue-header {
+  min-height: 73px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  border-bottom: 1px solid #d6ded9;
+}
+
+.dd-queue-header h2 {
+  margin: 0;
+  color: #202124;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.dd-filter-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border: 0;
+  background: transparent;
+  color: #00743f;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.dd-table-wrap {
+  overflow-x: auto;
+}
+
+.dd-queue table {
+  width: 100%;
+  min-width: 980px;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+
+.dd-queue th {
+  height: 68px;
+  padding: 0 24px;
+  background: #fbfbfb;
+  color: #666666;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.7px;
+  line-height: 1.25;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.dd-queue th:nth-child(3),
+.dd-queue td:nth-child(3),
+.dd-queue th:nth-child(5),
+.dd-queue td:nth-child(5) {
+  text-align: center;
+}
+
+.dd-queue td {
+  height: 76px;
+  padding: 0 24px;
+  border-top: 1px solid #e6e6e6;
+  color: #2f3d38;
+  vertical-align: middle;
+}
+
+.dd-row-highlight {
+  background: #edf7f2;
+  box-shadow: inset 4px 0 0 #d9eee5;
+}
+
+.dd-queue td strong,
+.dd-queue td span {
+  display: block;
+}
+
+.dd-queue td strong {
+  color: #1f2523;
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+.dd-queue td span {
+  margin-top: 4px;
+  color: #3f4d48;
+  font-size: 13px;
+}
+
+.dd-amount {
+  color: #151a18;
+  font-weight: 700;
+}
+
+.dd-disburse-button {
+  min-width: 92px;
+  height: 38px;
+  border: 0;
+  background: #00743f;
+  color: #ffffff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.dd-empty {
+  height: 118px;
+  color: #6b7280;
+  text-align: center !important;
+}
+
+.dd-table-footer {
+  min-height: 53px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #d6ded9;
+  padding: 0 24px;
+  color: #5f6663;
+  font-size: 14px;
+}
+
+.dd-pagination {
+  display: flex;
+  gap: 8px;
+}
+
+.dd-pagination button {
+  width: 18px;
+  height: 18px;
+  border: 1px solid #cdd7d1;
+  border-radius: 5px;
+  background: #ffffff;
+  color: #8b9690;
+  padding: 0;
+}
+
+.dd-page-modal-open > :not(.dd-modal-backdrop) {
+  filter: blur(8px);
+}
+
+.dd-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.32);
+}
+
+.dd-modal {
+  position: relative;
+  width: min(640px, 100%);
+  border-radius: 7px;
+  background: #ffffff;
+  padding: 32px;
+  box-shadow: 0 18px 46px rgba(32, 33, 36, 0.16);
+  text-align: center;
+}
+
+.dd-modal-close {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  border: 0;
+  background: transparent;
+  color: #6f7672;
+  cursor: pointer;
+}
+
+.dd-modal-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: #e3f5ee;
+  color: #00894d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dd-modal h2 {
+  margin: 0;
+  color: #202124;
+  font-size: 30px;
+  line-height: 1.2;
+}
+
+.dd-modal > p {
+  width: min(500px, 100%);
+  margin: 14px auto 34px;
+  color: #4f5a55;
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+.dd-confirm-card {
+  border: 1px solid #dedbd9;
+  border-radius: 7px;
+  background: #f6f3f2;
+  padding: 24px;
+  text-align: left;
+}
+
+.dd-confirm-top {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+}
+
+.dd-confirm-card span {
+  display: block;
+  margin-bottom: 9px;
+  color: #4f5a55;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+}
+
+.dd-confirm-card strong {
+  display: block;
+  color: #202124;
+  font-size: 16px;
+  line-height: 1.3;
+}
+
+.dd-confirm-top div:last-child {
+  text-align: right;
+}
+
+.dd-confirm-top div:last-child strong {
+  color: #00743f;
+  font-size: 27px;
+}
+
+.dd-confirm-divider {
+  height: 1px;
+  margin: 38px 0 30px;
+  background: #dedbd9;
+}
+
+.dd-confirm-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 26px 72px;
+}
+
+.dd-confirm-button,
+.dd-cancel-button {
+  width: 100%;
+  border: 0;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.dd-confirm-button {
+  height: 52px;
+  margin-top: 32px;
+  border-radius: 7px;
+  background: #00894d;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+}
+
+.dd-cancel-button {
+  margin-top: 24px;
+  background: transparent;
+  color: #790000;
+  font-size: 14px;
+}
+
+@media (max-width: 900px) {
+  .dd-page {
+    padding: 18px;
+  }
+
+  .dd-header {
+    height: auto;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 18px;
+  }
+
+  .dd-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dd-confirm-top,
+  .dd-confirm-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dd-confirm-top div:last-child {
+    text-align: left;
+  }
+}

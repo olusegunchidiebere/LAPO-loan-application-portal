@@ -1,0 +1,737 @@
+.ad-page {
+  min-height: 100vh;
+  background: #f3f3f3;
+  color: #202124;
+  padding: 32px 36px 108px;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+}
+
+.ad-header {
+  width: min(1368px, 100%);
+  height: 66px;
+  margin: 0 auto 46px;
+  display: grid;
+  grid-template-columns: 188px 1fr auto;
+  align-items: center;
+  gap: 42px;
+  background: #ffffff;
+  border-radius: 6px;
+  padding: 0 16px 0 20px;
+}
+
+.ad-brand img {
+  display: block;
+  width: 104px;
+  height: auto;
+}
+
+.ad-heading h1 {
+  margin: 0;
+  color: #202124;
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.ad-heading p {
+  margin: 7px 0 0;
+  color: #4f5a55;
+  font-size: 13px;
+}
+
+.ad-refresh-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  border: 0;
+  border-radius: 5px;
+  background: #00743f;
+  color: #ffffff;
+  padding: 0 16px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.ad-stats-grid {
+  width: min(1368px, 100%);
+  margin: 0 auto 48px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.ad-stat-card {
+  min-height: 190px;
+  background: #ffffff;
+  border: 1px solid #e7e7e7;
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 12px 26px rgba(32, 33, 36, 0.07);
+}
+
+.ad-stat-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.ad-stat-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ad-stat-icon-box--pending {
+  background: #ffddb3;
+}
+
+.ad-stat-icon-box--verified,
+.ad-stat-icon-box--rejected {
+  background: transparent;
+}
+
+.ad-stat-icon {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}
+
+.ad-stat-icon-box--pending .ad-stat-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.ad-stat-badge {
+  border-radius: 4px;
+  background: #eeeeee;
+  color: #4f5653;
+  padding: 5px 9px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.ad-stat-label {
+  color: #45504b;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.ad-stat-card strong {
+  margin-top: 10px;
+  font-size: 50px;
+  line-height: 1;
+}
+
+.ad-queue {
+  width: min(1368px, 100%);
+  margin: 0 auto;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.ad-queue-header {
+  min-height: 73px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  border-bottom: 1px solid #d6ded9;
+}
+
+.ad-queue-header h2 {
+  margin: 0;
+  color: #202124;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.ad-filter-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border: 0;
+  background: transparent;
+  color: #00743f;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.ad-table-wrap {
+  overflow-x: auto;
+}
+
+.ad-queue table {
+  width: 100%;
+  min-width: 980px;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+
+.ad-queue th {
+  height: 68px;
+  padding: 0 24px;
+  background: #fbfbfb;
+  color: #666666;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.7px;
+  line-height: 1.25;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.ad-queue th:nth-child(3),
+.ad-queue td:nth-child(3),
+.ad-queue th:nth-child(5),
+.ad-queue td:nth-child(5) {
+  text-align: center;
+}
+
+.ad-queue td {
+  height: 76px;
+  padding: 0 24px;
+  border-top: 1px solid #e6e6e6;
+  color: #2f3d38;
+  vertical-align: middle;
+}
+
+.ad-row-highlight {
+  background: #edf7f2;
+  box-shadow: inset 4px 0 0 #d9eee5;
+}
+
+.ad-queue td strong,
+.ad-queue td span {
+  display: block;
+}
+
+.ad-queue td strong {
+  color: #1f2523;
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+.ad-queue td span {
+  margin-top: 4px;
+  color: #3f4d48;
+  font-size: 13px;
+}
+
+.ad-amount {
+  color: #151a18;
+  font-weight: 700;
+}
+
+.ad-review-button {
+  min-width: 74px;
+  height: 24px;
+  border: 1.5px solid #00743f;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #00743f;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.ad-empty {
+  height: 118px;
+  color: #6b7280;
+  text-align: center !important;
+}
+
+.ad-table-footer {
+  min-height: 53px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #d6ded9;
+  padding: 0 24px;
+  color: #5f6663;
+  font-size: 14px;
+}
+
+.ad-pagination {
+  display: flex;
+  gap: 8px;
+}
+
+.ad-pagination button {
+  width: 18px;
+  height: 18px;
+  border: 1px solid #cdd7d1;
+  border-radius: 5px;
+  background: #ffffff;
+  color: #8b9690;
+  padding: 0;
+}
+
+.ad-review-page {
+  padding-bottom: 96px;
+}
+
+.ad-review-layout {
+  width: min(1368px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 324px;
+  gap: 24px;
+}
+
+.ad-review-main {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.ad-profile-card,
+.ad-bank-card,
+.ad-side-panel {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 12px 26px rgba(32, 33, 36, 0.05);
+}
+
+.ad-profile-card {
+  min-height: 324px;
+  padding: 34px 32px;
+}
+
+.ad-profile-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 46px;
+}
+
+.ad-profile-title-row h2,
+.ad-bank-card h2 {
+  margin: 0;
+  color: #00743f;
+  font-size: 25px;
+  line-height: 1.2;
+}
+
+.ad-requested-amount {
+  text-align: right;
+  color: #00894d;
+}
+
+.ad-requested-amount strong {
+  display: block;
+  font-size: 32px;
+  line-height: 1;
+}
+
+.ad-requested-amount span {
+  display: block;
+  margin-top: 6px;
+  color: #333d38;
+  font-size: 12px;
+}
+
+.ad-profile-grid,
+.ad-bank-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 72px;
+  row-gap: 28px;
+}
+
+.ad-profile-grid .ad-detail-field:nth-child(3),
+.ad-profile-grid .ad-detail-field:nth-child(4) {
+  grid-column: 1 / -1;
+}
+
+.ad-detail-field span {
+  display: block;
+  margin-bottom: 8px;
+  color: #676c69;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.ad-detail-field strong {
+  display: block;
+  color: #202124;
+  font-size: 16px;
+  line-height: 1.35;
+}
+
+.ad-bank-card {
+  min-height: 404px;
+  padding: 34px 32px;
+}
+
+.ad-bank-card h2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 28px;
+  color: #202124;
+}
+
+.ad-bank-card h2 svg,
+.ad-verification-line svg {
+  color: #00743f;
+}
+
+.ad-bank-status-grid {
+  margin-bottom: 24px;
+}
+
+.ad-verification-line span {
+  display: block;
+  margin-bottom: 8px;
+  color: #676c69;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.ad-verification-line strong {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #202124;
+  font-size: 16px;
+}
+
+.ad-verification-line:nth-child(2) svg {
+  color: #b36b00;
+}
+
+.ad-bank-divider {
+  height: 1px;
+  margin: 0 0 26px;
+  background: #b9c9c0;
+}
+
+.ad-income-summary {
+  margin-top: 34px;
+  border: 1px solid #b9c9c0;
+  border-radius: 7px;
+  background: #faf8f7;
+  padding: 18px 16px;
+}
+
+.ad-income-summary > span {
+  display: block;
+  margin-bottom: 14px;
+  color: #4c5651;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.ad-income-summary div {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  align-items: center;
+}
+
+.ad-income-summary p {
+  margin: 0 0 12px;
+}
+
+.ad-income-summary strong {
+  color: #202124;
+  font-size: 14px;
+}
+
+.ad-income-summary div:last-child strong {
+  color: #00743f;
+}
+
+.ad-side-panel {
+  min-height: 1004px;
+  overflow: hidden;
+}
+
+.ad-side-head {
+  min-height: 92px;
+  padding: 28px 24px 20px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-bottom: 1px solid #d6ded9;
+}
+
+.ad-side-head strong,
+.ad-side-head span {
+  display: block;
+}
+
+.ad-side-head strong {
+  font-size: 13px;
+}
+
+.ad-side-head span {
+  margin-top: 12px;
+  color: #3b4540;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.ad-side-head button {
+  border: 0;
+  background: transparent;
+  color: #676c69;
+  cursor: pointer;
+}
+
+.ad-side-applicant {
+  margin: 26px 24px 26px;
+  border-radius: 6px;
+  background: #e7e4e3;
+  padding: 28px 24px 26px;
+}
+
+.ad-side-applicant h3 {
+  margin: 0 0 10px;
+  color: #202124;
+  font-size: 24px;
+  line-height: 1.25;
+}
+
+.ad-forwarded-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border-radius: 4px;
+  background: #ffdca8;
+  color: #6a4105;
+  padding: 4px 9px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.ad-side-applicant p {
+  margin: 18px 0;
+  color: #636363;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.ad-side-amount-card {
+  display: grid;
+  grid-template-columns: 1fr 76px;
+  gap: 14px;
+  border-radius: 7px;
+  background: #ffffff;
+  padding: 24px 16px;
+}
+
+.ad-side-amount-card span,
+.ad-side-amount-card small {
+  display: block;
+  color: #666666;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.ad-side-amount-card strong {
+  display: block;
+  margin-top: 12px;
+  color: #00743f;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.ad-side-amount-card div:last-child {
+  text-align: right;
+}
+
+.ad-side-amount-card div:last-child strong {
+  color: #202124;
+  font-size: 16px;
+}
+
+.ad-side-amount-card small {
+  margin-top: 6px;
+  color: #202124;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.ad-notes-section,
+.ad-metrics-section {
+  padding: 0 24px;
+}
+
+.ad-notes-section h4,
+.ad-metrics-section h4 {
+  margin: 0 0 14px;
+  color: #666666;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+}
+
+.ad-note-card {
+  min-height: 230px;
+  border: 1px solid #dedbd9;
+  border-radius: 7px;
+  background: #ebe7e7;
+  padding: 22px 20px;
+  color: #202124;
+}
+
+.ad-note-card svg {
+  float: left;
+  margin: 0 10px 4px 0;
+  color: #686868;
+}
+
+.ad-note-card p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.ad-note-card span {
+  display: block;
+  margin-top: 20px;
+  color: #5f5f5f;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: right;
+}
+
+.ad-metrics-section {
+  margin-top: 28px;
+}
+
+.ad-metric-row {
+  min-height: 46px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  border-bottom: 1px solid #eeeeee;
+  gap: 16px;
+  color: #666666;
+}
+
+.ad-metric-row strong {
+  color: #202124;
+  font-size: 16px;
+}
+
+.ad-metric-row:first-of-type strong {
+  color: #00743f;
+}
+
+.ad-review-actions {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  min-height: 68px;
+  background: #ffffff;
+  border-top: 1px solid #d6ded9;
+  display: grid;
+  grid-template-columns: minmax(260px, 448px) 200px 1fr 220px;
+  align-items: center;
+  gap: 16px;
+  padding: 0 36px;
+  z-index: 10;
+}
+
+.ad-review-actions input {
+  height: 44px;
+  border: 1px solid #b9c9c0;
+  border-radius: 7px;
+  padding: 0 18px;
+  color: #202124;
+  font: inherit;
+  font-size: 16px;
+}
+
+.ad-reject-button,
+.ad-approve-button {
+  height: 42px;
+  border: 0;
+  border-radius: 9px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.ad-reject-button {
+  background: #ffd3d0;
+  color: #a10000;
+}
+
+.ad-approve-button {
+  grid-column: 4;
+  background: #00894d;
+  color: #ffffff;
+}
+
+@media (max-width: 900px) {
+  .ad-page {
+    padding: 18px;
+  }
+
+  .ad-header {
+    height: auto;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 18px;
+  }
+
+  .ad-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ad-review-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .ad-profile-title-row {
+    flex-direction: column;
+  }
+
+  .ad-requested-amount {
+    text-align: left;
+  }
+
+  .ad-profile-grid,
+  .ad-bank-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ad-side-panel {
+    min-height: auto;
+  }
+
+  .ad-review-actions {
+    position: static;
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
+
+  .ad-approve-button {
+    grid-column: auto;
+  }
+}

@@ -1,22 +1,22 @@
 import { useMemo, useState } from 'react';
-import './VerificationDashboard.css';
+import { AlertTriangle, CheckCircle, Filter, Quote, RefreshCw, ShieldCheck, X, XCircle } from 'lucide-react';
+import './ApprovalDashboard.css';
 import LapoLogo from '../../assets/LapoLogo.png';
 import TotalPending from '../../assets/TotalPending.png';
 import VerifiedIcon from '../../assets/VerifiedIcon.png';
 import RejectedIcon from '../../assets/RejectedIcon.png';
-import PendingStatusIcon from '../../assets/Pending.png';
-import VerifiedStatusIcon from '../../assets/Verified.png';
 
 const APPLICATIONS_STORAGE_KEY = 'lapoLoanApplications';
-const statusIcons = {
-  Pending: PendingStatusIcon,
-  Verified: VerifiedStatusIcon,
-  Rejected: RejectedIcon,
-};
+const FORWARDED_STATUS = 'Verified';
+const APPROVED_STATUS = 'Approved';
+const REJECTED_STATUS = 'Rejected';
 
-function readApplications() {
+function readAllApplications() {
   try {
-    return JSON.parse(localStorage.getItem(APPLICATIONS_STORAGE_KEY) || '[]');
+    const applications = JSON.parse(localStorage.getItem(APPLICATIONS_STORAGE_KEY) || '[]');
+    return Array.isArray(applications)
+      ? applications.filter((application) => application && typeof application === 'object')
+      : [];
   } catch {
     return [];
   }
@@ -31,238 +31,256 @@ function formatAmount(value) {
   return amount ? amount.toLocaleString() : '0';
 }
 
+function formatCurrency(value) {
+  return `\u20A6 ${formatAmount(value)}`;
+}
+
 function formatDate(value) {
   if (!value) return '-';
+  const date = new Date(value);
+
+  if (Number.isNaN(date.getTime())) {
+    return '-';
+  }
+
   return new Intl.DateTimeFormat('en-US', {
     month: 'short',
     day: 'numeric',
     year: 'numeric',
-  }).format(new Date(value));
+  }).format(date);
 }
 
-function StatusBadge({ status }) {
-  const displayStatus = status || 'Pending';
-  const normalizedStatus = displayStatus.toLowerCase();
-  const icon = statusIcons[displayStatus];
-
-  return (
-    <span className={`vd-status vd-status--${normalizedStatus}`}>
-      {icon && <img src={icon} alt="" aria-hidden="true" />}
-      {displayStatus}
-    </span>
-  );
+function valueOrDash(value) {
+  return value || '-';
 }
 
 function DetailField({ label, value }) {
   return (
-    <div className="vd-detail-field">
+    <div className="ad-detail-field">
       <span>{label}</span>
-      <strong>{value || '-'}</strong>
+      <strong>{valueOrDash(value)}</strong>
     </div>
   );
 }
 
-function initialsFromName(name) {
-  return name
-    .split(' ')
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((part) => part[0])
-    .join('')
-    .toUpperCase() || 'NA';
+function MetricRow({ label, value }) {
+  return (
+    <div className="ad-metric-row">
+      <span>{label}</span>
+      <strong>{valueOrDash(value)}</strong>
+    </div>
+  );
 }
 
-export default function VerificationDashboard() {
-  const [search, setSearch] = useState('');
-  const [applications, setApplications] = useState(() => readApplications());
+export default function ApprovalDashboard() {
+  const [allApplications, setAllApplications] = useState(() => readAllApplications());
   const [selectedApplicationId, setSelectedApplicationId] = useState(null);
   const [rejectionReason, setRejectionReason] = useState('');
-  const selectedApplication = applications.find((application) => application.id === selectedApplicationId);
+
+  const approvalQueue = useMemo(
+    () => allApplications.filter((application) => application.status === FORWARDED_STATUS),
+    [allApplications]
+  );
+
+  const selectedApplication = approvalQueue.find((application) => application.id === selectedApplicationId);
 
   const stats = useMemo(() => {
     const totalByStatus = (status) =>
-      applications.filter((application) => (application.status || 'Pending') === status).length;
+      allApplications.filter((application) => application.status === status).length;
 
     return [
-      { label: 'Total Pending', value: totalByStatus('Pending'), badge: 'Live', icon: TotalPending, tone: 'pending' },
-      { label: 'Verified', value: totalByStatus('Verified'), badge: 'Today', icon: VerifiedIcon, tone: 'verified' },
-      { label: 'Rejected', value: totalByStatus('Rejected'), badge: 'Today', icon: RejectedIcon, tone: 'rejected' },
+      { label: 'Total Pending', value: approvalQueue.length, badge: 'Live', icon: TotalPending, tone: 'pending' },
+      { label: 'Verified', value: totalByStatus(APPROVED_STATUS), badge: 'Today', icon: VerifiedIcon, tone: 'verified' },
+      { label: 'Rejected', value: totalByStatus(REJECTED_STATUS), badge: 'Today', icon: RejectedIcon, tone: 'rejected' },
     ];
-  }, [applications]);
-
-  const filteredApplications = useMemo(() => {
-    const query = search.trim().toLowerCase();
-
-    if (!query) {
-      return applications;
-    }
-
-    return applications.filter((application) =>
-      [
-        application.id,
-        formatApplicantName(application),
-        application.loanType,
-        application.amountRequested,
-        application.status,
-      ]
-        .join(' ')
-        .toLowerCase()
-        .includes(query)
-    );
-  }, [applications, search]);
+  }, [allApplications, approvalQueue.length]);
 
   const refreshQueue = () => {
-    setApplications(readApplications());
+    setAllApplications(readAllApplications());
+    setSelectedApplicationId(null);
+    setRejectionReason('');
   };
 
-  const updateApplicationStatus = (status) => {
+  const updateApprovalStatus = (status) => {
     if (!selectedApplication) return;
-    if (status === 'Rejected' && !rejectionReason.trim()) {
+
+    if (status === REJECTED_STATUS && !rejectionReason.trim()) {
       alert('Please enter a reason before rejecting this application.');
       return;
     }
 
-    const updatedApplications = applications.map((application) =>
+    const reviewedAt = new Date().toISOString();
+    const updatedApplications = readAllApplications().map((application) =>
       application.id === selectedApplication.id
-        ? { ...application, status, rejectionReason: status === 'Rejected' ? rejectionReason : '' }
+        ? {
+            ...application,
+            status,
+            approvalStatus: status,
+            approvalReviewedAt: reviewedAt,
+            approvalRejectionReason: status === REJECTED_STATUS ? rejectionReason.trim() : '',
+          }
         : application
     );
 
     localStorage.setItem(APPLICATIONS_STORAGE_KEY, JSON.stringify(updatedApplications));
-    setApplications(updatedApplications);
+    setAllApplications(updatedApplications);
     setSelectedApplicationId(null);
     setRejectionReason('');
   };
 
   if (selectedApplication) {
     const applicantName = formatApplicantName(selectedApplication);
+    const loanPurpose = selectedApplication.loanPurpose || selectedApplication.loanType;
+    const term = selectedApplication.tenor ? `${selectedApplication.tenor} Months` : '-';
+    const verificationNote = selectedApplication.verificationNotes || selectedApplication.internalNotes;
 
     return (
-      <section className="vd-page vd-page-review">
-        <header className="vd-header">
-          <div className="vd-brand">
+      <section className="ad-page ad-review-page">
+        <header className="ad-header">
+          <div className="ad-brand">
             <img src={LapoLogo} alt="LAPO Microfinance Bank" />
           </div>
-          <div className="vd-heading">
-            <h1>Verification Dashboard</h1>
-            <p>Manage and review pending loan applications.</p>
+          <div className="ad-heading">
+            <h1>Approval Dashboard</h1>
+            <p>Review and action verified loan applications.</p>
           </div>
-          <button type="button" className="vd-refresh-button" onClick={refreshQueue}>
-            <span aria-hidden="true">↻</span>
+          <button type="button" className="ad-refresh-button" onClick={refreshQueue}>
+            <RefreshCw size={16} aria-hidden="true" />
             Refresh Queue
           </button>
         </header>
 
-        <div className="vd-review-layout">
-          <div className="vd-review-main">
-            <section className="vd-review-card vd-profile-card">
-              <div className="vd-profile-title-row">
+        <div className="ad-review-layout">
+          <main className="ad-review-main">
+            <section className="ad-profile-card">
+              <div className="ad-profile-title-row">
                 <h2>Applicant Profile</h2>
-                <div className="vd-requested-amount">
-                  <strong>₦ {formatAmount(selectedApplication.amountRequested)}</strong>
+                <div className="ad-requested-amount">
+                  <strong>{formatCurrency(selectedApplication.amountRequested)}</strong>
                   <span>Requested Amount</span>
                 </div>
               </div>
-              <div className="vd-detail-grid">
+
+              <div className="ad-profile-grid">
                 <DetailField label="Full Name" value={applicantName} />
-                <DetailField label="BVN" value={selectedApplication.bvn} />
-                <DetailField label="Phone Number" value={selectedApplication.phone} />
-                <DetailField label="Oracle No" value={selectedApplication.oracleNo} />
+                <DetailField label="Duration" value={term} />
+                <DetailField label="Loan Purpose" value={loanPurpose} />
                 <DetailField label="Residential Address" value={selectedApplication.homeAddress} />
               </div>
             </section>
 
-            <section className="vd-review-card">
-              <h2>Guarantor Information</h2>
-              <div className="vd-detail-grid">
-                <DetailField label="Guarantor Name" value={selectedApplication.kinName} />
-                <DetailField label="Relationship" value={selectedApplication.kinRelationship} />
-                <DetailField label="Phone Number" value={selectedApplication.kinPhone} />
-                <DetailField label="Occupation" value={selectedApplication.kinOccupation || selectedApplication.occupation} />
+            <section className="ad-bank-card">
+              <h2>
+                <ShieldCheck size={22} aria-hidden="true" />
+                Verification &amp; Bank Details
+              </h2>
+
+              <div className="ad-bank-grid ad-bank-status-grid">
+                <div className="ad-verification-line">
+                  <span>BVN Status</span>
+                  <strong>
+                    <CheckCircle size={20} aria-hidden="true" />
+                    {selectedApplication.bvn ? 'Verified - Matches Profile' : '-'}
+                  </strong>
+                </div>
+                <div className="ad-verification-line">
+                  <span>Credit Bureau Check</span>
+                  <strong>
+                    <AlertTriangle size={20} aria-hidden="true" />
+                    {selectedApplication.creditBureauCheck || 'Clear'}
+                  </strong>
+                </div>
+              </div>
+
+              <div className="ad-bank-divider" />
+
+              <div className="ad-bank-grid">
+                <DetailField label="Bank Name" value={selectedApplication.bank} />
+                <DetailField label="Account Number" value={selectedApplication.accountNumber} />
+              </div>
+
+              <div className="ad-income-summary">
+                <span>Income Proof Summary (6 Months Statement)</span>
+                <div>
+                  <p>Average Monthly Inflow:</p>
+                  <strong>{selectedApplication.monthlyInflow ? formatCurrency(selectedApplication.monthlyInflow) : '-'}</strong>
+                </div>
+                <div>
+                  <p>Consistent Deposits:</p>
+                  <strong>{selectedApplication.consistentDeposits || '-'}</strong>
+                </div>
               </div>
             </section>
-          </div>
+          </main>
 
-          <aside className="vd-review-side">
-            <div className="vd-side-head">
+          <aside className="ad-side-panel">
+            <div className="ad-side-head">
               <div>
-                <strong>Application Review</strong>
+                <strong>Approval Review</strong>
                 <span>{selectedApplication.id}</span>
               </div>
               <button type="button" aria-label="Close details" onClick={() => setSelectedApplicationId(null)}>
-                x
+                <X size={24} aria-hidden="true" />
               </button>
             </div>
 
-            <div className="vd-side-applicant">
-              <div className="vd-avatar">{initialsFromName(applicantName)}</div>
+            <section className="ad-side-applicant">
               <h3>{applicantName}</h3>
-            </div>
+              <span className="ad-forwarded-badge">
+                <CheckCircle size={12} aria-hidden="true" />
+                Pending
+              </span>
+              <p>
+                Application ID: {selectedApplication.id}
+                {selectedApplication.loanType ? ` • ${selectedApplication.loanType}` : ''}
+              </p>
 
-            <div className="vd-eligibility">
-              <div className="vd-eligibility-top">
-                <span>Auto-calculated eligibility</span>
-                <strong>High Match</strong>
-              </div>
-              <p><strong>85</strong> /100</p>
-              <div className="vd-score-track">
-                <span />
-              </div>
-            </div>
-
-            <section className="vd-documents">
-              <h4>Submitted Documents</h4>
-              <div className="vd-document-row">
-                <div className="vd-document-icon">▣</div>
+              <div className="ad-side-amount-card">
                 <div>
-                  <strong>{selectedApplication.passportFileName || 'Passport Photograph'}</strong>
-                  <span>
-                    {selectedApplication.passportPreviewUrl
-                      ? 'Preview available'
-                      : 'No image preview saved'}
-                  </span>
+                  <span>Requested Amount</span>
+                  <strong>{formatCurrency(selectedApplication.amountRequested)}</strong>
                 </div>
-                <img src={VerifiedStatusIcon} alt="" />
+                <div>
+                  <span>Term</span>
+                  <strong>{selectedApplication.tenor || '-'}</strong>
+                  <small>Months</small>
+                </div>
               </div>
-              {selectedApplication.passportPreviewUrl ? (
-                <div className="vd-document-preview vd-document-preview-has-image">
-                  <img src={selectedApplication.passportPreviewUrl} alt="Uploaded passport preview" />
-                </div>
-              ) : (
-                <div className="vd-document-preview">
-                  <span>▧</span>
-                  <strong>Document Preview Canvas</strong>
-                </div>
-              )}
             </section>
 
-            <label className="vd-notes">
-              <span>Internal Notes (Optional)</span>
-              <textarea placeholder="Add any observations before approving/rejecting..." />
-            </label>
+            <section className="ad-notes-section">
+              <h4>Verification Notes</h4>
+              <div className="ad-note-card">
+                <Quote size={20} aria-hidden="true" />
+                <p>{verificationNote || 'No verification notes were added for this application.'}</p>
+                <span>{selectedApplication.verifiedBy || 'Verification Officer'}{selectedApplication.verifiedAt ? `, ${formatDate(selectedApplication.verifiedAt)}` : ''}</span>
+              </div>
+            </section>
+
+            <section className="ad-metrics-section">
+              <h4>Key Metrics</h4>
+              <MetricRow label="Credit Score" value={selectedApplication.creditScore} />
+              <MetricRow label="Debt-to-Income" value={selectedApplication.debtToIncome} />
+              <MetricRow
+                label="Collateral Value"
+                value={selectedApplication.collateralValue ? formatCurrency(selectedApplication.collateralValue) : ''}
+              />
+            </section>
           </aside>
         </div>
 
-        <div className="vd-review-actions">
+        <div className="ad-review-actions">
           <input
             value={rejectionReason}
             onChange={(event) => setRejectionReason(event.target.value)}
             placeholder="Reason for rejection (required if rejecting)..."
           />
-          <button
-            type="button"
-            className="vd-reject-button"
-            onClick={() => updateApplicationStatus('Rejected')}
-          >
-            <img src={RejectedIcon} alt="" />
+          <button type="button" className="ad-reject-button" onClick={() => updateApprovalStatus(REJECTED_STATUS)}>
+            <XCircle size={16} aria-hidden="true" />
             Reject Application
           </button>
-          <button
-            type="button"
-            className="vd-verify-button"
-            onClick={() => updateApplicationStatus('Verified')}
-          >
-            <img src={VerifiedStatusIcon} alt="" />
+          <button type="button" className="ad-approve-button" onClick={() => updateApprovalStatus(APPROVED_STATUS)}>
+            <CheckCircle size={16} aria-hidden="true" />
             Verify and Forward
           </button>
         </div>
@@ -271,93 +289,82 @@ export default function VerificationDashboard() {
   }
 
   return (
-    <section className="vd-page">
-      <header className="vd-header">
-        <div className="vd-brand">
+    <section className="ad-page">
+      <header className="ad-header">
+        <div className="ad-brand">
           <img src={LapoLogo} alt="LAPO Microfinance Bank" />
         </div>
-        <div className="vd-heading">
-          <h1>Verification Dashboard</h1>
-          <p>Manage and review pending loan applications.</p>
+        <div className="ad-heading">
+          <h1>Approval Dashboard</h1>
+          <p>Review and action verified loan applications.</p>
         </div>
-        <button type="button" className="vd-refresh-button" onClick={refreshQueue}>
-          <span aria-hidden="true">↻</span>
+        <button type="button" className="ad-refresh-button" onClick={refreshQueue}>
+          <RefreshCw size={16} aria-hidden="true" />
           Refresh Queue
         </button>
       </header>
 
-      <div className="vd-stats-grid">
+      <div className="ad-stats-grid">
         {stats.map((item) => (
-          <article className="vd-stat-card" key={item.label}>
-            <div className="vd-stat-card-top">
-              <span className={`vd-stat-icon-box vd-stat-icon-box--${item.tone}`}>
-                <img className="vd-stat-icon" src={item.icon} alt="" />
+          <article className="ad-stat-card" key={item.label}>
+            <div className="ad-stat-card-top">
+              <span className={`ad-stat-icon-box ad-stat-icon-box--${item.tone}`}>
+                <img className="ad-stat-icon" src={item.icon} alt="" />
               </span>
-              <span className="vd-stat-badge">{item.badge}</span>
+              <span className="ad-stat-badge">{item.badge}</span>
             </div>
-            <span className="vd-stat-label">{item.label}</span>
+            <span className="ad-stat-label">{item.label}</span>
             <strong>{item.value}</strong>
           </article>
         ))}
       </div>
 
-      <section className="vd-queue">
-        <div className="vd-queue-header">
-          <h2>Applications Queue</h2>
-          <label className="vd-search">
-            <span aria-hidden="true">⌕</span>
-            <input
-              type="search"
-              value={search}
-              onChange={(event) => setSearch(event.target.value)}
-              placeholder="Search applicant..."
-              aria-label="Search applicant"
-            />
-          </label>
+      <section className="ad-queue">
+        <div className="ad-queue-header">
+          <h2>Verified Queue</h2>
+          <button type="button" className="ad-filter-button">
+            <Filter size={14} aria-hidden="true" />
+            Filter
+          </button>
         </div>
 
-        <div className="vd-table-wrap">
+        <div className="ad-table-wrap">
           <table>
             <thead>
               <tr>
                 <th>Applicant Name</th>
                 <th>Loan Type</th>
-                <th>Amount<br />(₦)</th>
-                <th>Date<br />Submitted</th>
-                <th>Status</th>
+                <th>Amount<br />({'\u20A6'})</th>
+                <th>Verified By</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              {filteredApplications.map((application, index) => (
-                <tr className={index === 0 ? 'vd-row-highlight' : ''} key={application.id}>
+              {approvalQueue.map((application, index) => (
+                <tr className={index === 0 ? 'ad-row-highlight' : ''} key={application.id}>
                   <td>
                     <strong>{formatApplicantName(application)}</strong>
                     <span>ID: {application.id}</span>
                   </td>
                   <td>{application.loanType || '-'}</td>
-                  <td className="vd-amount">{formatAmount(application.amountRequested)}</td>
-                  <td>{formatDate(application.submittedAt)}</td>
-                  <td>
-                    <StatusBadge status={application.status} />
-                  </td>
+                  <td className="ad-amount">{formatAmount(application.amountRequested)}</td>
+                  <td>{application.verifiedBy || formatDate(application.verifiedAt || application.submittedAt)}</td>
                   <td>
                     <button
                       type="button"
-                      className="vd-link-button"
+                      className="ad-review-button"
                       onClick={() => setSelectedApplicationId(application.id)}
                     >
-                      View Details
-                      <span aria-hidden="true">→</span>
+                      Review
                     </button>
                   </td>
                 </tr>
               ))}
 
-              {filteredApplications.length === 0 && (
+              {approvalQueue.length === 0 && (
                 <tr>
-                  <td className="vd-empty" colSpan="6">
-                    No submitted applications found.
+                  <td className="ad-empty" colSpan="5">
+                    No forwarded applications are pending approval.
                   </td>
                 </tr>
               )}
@@ -365,13 +372,13 @@ export default function VerificationDashboard() {
           </table>
         </div>
 
-        <footer className="vd-table-footer">
+        <footer className="ad-table-footer">
           <span>
-            Showing {filteredApplications.length ? 1 : 0} to {filteredApplications.length} of {applications.length} entries
+            Showing {approvalQueue.length ? 1 : 0} to {approvalQueue.length} of {approvalQueue.length} entries
           </span>
-          <div className="vd-pagination" aria-hidden="true">
-            <button type="button">‹</button>
-            <button type="button">›</button>
+          <div className="ad-pagination" aria-hidden="true">
+            <button type="button">&lt;</button>
+            <button type="button">&gt;</button>
           </div>
         </footer>
       </section>
