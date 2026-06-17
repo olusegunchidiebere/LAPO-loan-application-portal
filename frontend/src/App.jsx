@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import AdminLogin from './Pages/Admin/AdminLogin';
 import Topbar from './Components/Topbar';
 import LandingPage from './Pages/LandingPage';
 import Eligibility from './Pages/Eligibility';
@@ -56,6 +57,8 @@ function App() {
           <Route path="/admin/approvaldashboard" element={<ApprovalDashboard />} />
           <Route path="/admin/disbursementdashboard" element={<DisbursementDashboard />} />
           <Route path="/check-balance" element={<LoanBalance />} />
+          <Route path="/admin" element={<AdminLogin />} />
+           <Route path="/Admin" element={<AdminLogin />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>

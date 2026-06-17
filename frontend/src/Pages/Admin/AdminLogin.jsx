@@ -1,16 +1,21 @@
 import { useState } from "react";
 import "./AdminLogin.css";
-import bgImage from "../assets/admin-login-bg.png";
-import lapoLogo from "../assets/LapoLogo.png";
+import bgImage from "../../assets/admin-login-bg.png";
+import lapoLogo from "../../assets/LapoLogo.png";
 
 export default function AdminLogin() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
+  const [staffId, setStaffId] = useState("");
+  const [role, setRole] = useState("Verification Officer");
   const [rememberMe, setRememberMe] = useState(false);
 
   const handleLogin = () => {
-    console.log("Login:", { email, password, rememberMe });
+    // Wire to Django backend later — for now just route based on role
+    console.log("Login:", { staffId, role, rememberMe });
+
+    // Later this will become something like:
+    // if (role === "Verification Officer") navigate("/admin/verification");
+    // if (role === "Approval Officer") navigate("/admin/approval");
+    // if (role === "Disbursement Officer") navigate("/admin/disbursement");
   };
 
   return (
@@ -47,37 +52,32 @@ export default function AdminLogin() {
           <h2 className="login-form__heading">Welcome back</h2>
           <p className="login-form__sub">Sign in to your administrative account.</p>
 
-          {/* Email */}
-          <label className="login-form__label">Staff Email</label>
+          {/* Staff ID */}
+          <label className="login-form__label">Staff ID</label>
           <div className="login-form__input-wrapper">
-            <MailIcon />
+            <IdIcon />
             <input
-              type="email"
+              type="text"
               className="login-form__input"
-              placeholder="name@lapo-nigeria.org"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Eg. 1234abc"
+              value={staffId}
+              onChange={(e) => setStaffId(e.target.value)}
             />
           </div>
 
-          {/* Password */}
-          <label className="login-form__label">Password</label>
-          <div className="login-form__input-wrapper">
-            <LockIcon />
-            <input
-              type={showPassword ? "text" : "password"}
-              className="login-form__input"
-              placeholder="••••••••"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <button
-              className="login-form__eye-btn"
-              onClick={() => setShowPassword((v) => !v)}
-              aria-label="Toggle password"
+          {/* Role dropdown */}
+          <label className="login-form__label">Role</label>
+          <div className="login-form__select-wrapper">
+            <select
+              className="login-form__select"
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
             >
-              {showPassword ? <EyeOffIcon /> : <EyeIcon />}
-            </button>
+              <option value="Verification Officer">Verification Officer</option>
+              <option value="Approval Officer">Approval Officer</option>
+              <option value="Disbursement Officer">Disbursement Officer</option>
+            </select>
+            <ChevronDownIcon />
           </div>
 
           {/* Remember me + Forgot */}
@@ -91,7 +91,7 @@ export default function AdminLogin() {
               />
               Remember me
             </label>
-            <button className="login-form__forgot-btn">Forgot Password?</button>
+           
           </div>
 
           {/* Submit */}
@@ -112,22 +112,25 @@ export default function AdminLogin() {
 }
 
 /* ── Icons ── */
-function MailIcon() {
+function IdIcon() {
   return (
     <svg className="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="2" y="4" width="20" height="16" rx="2" />
-      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+      <rect x="2" y="5" width="20" height="14" rx="2" />
+      <circle cx="8.5" cy="12" r="2" />
+      <path d="M13 10h6" />
+      <path d="M13 14h6" />
     </svg>
   );
 }
-function LockIcon() {
+
+function ChevronDownIcon() {
   return (
-    <svg className="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+    <svg className="select-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="6 9 12 15 18 9" />
     </svg>
   );
 }
+
 function LockSmallIcon() {
   return (
     <svg className="btn-icon" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -136,23 +139,7 @@ function LockSmallIcon() {
     </svg>
   );
 }
-function EyeIcon() {
-  return (
-    <svg className="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-      <circle cx="12" cy="12" r="3" />
-    </svg>
-  );
-}
-function EyeOffIcon() {
-  return (
-    <svg className="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94" />
-      <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19" />
-      <line x1="1" y1="1" x2="23" y2="23" />
-    </svg>
-  );
-}
+
 function ShieldIcon() {
   return (
     <svg className="shield-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
