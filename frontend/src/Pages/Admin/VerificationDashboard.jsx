@@ -8,10 +8,13 @@ import PendingStatusIcon from '../../assets/Pending.png';
 import VerifiedStatusIcon from '../../assets/Verified.png';
 
 const APPLICATIONS_STORAGE_KEY = 'lapoLoanApplications';
+const PENDING_STATUS = 'Pending';
+const VERIFIED_STATUS = 'Verified';
+const REJECTED_STATUS = 'Rejected';
 const statusIcons = {
-  Pending: PendingStatusIcon,
-  Verified: VerifiedStatusIcon,
-  Rejected: RejectedIcon,
+  [PENDING_STATUS]: PendingStatusIcon,
+  [VERIFIED_STATUS]: VerifiedStatusIcon,
+  [REJECTED_STATUS]: RejectedIcon,
 };
 
 function readApplications() {
@@ -90,23 +93,28 @@ export default function VerificationDashboard() {
 
   const stats = useMemo(() => {
     const totalByStatus = (status) =>
-      applications.filter((application) => (application.status || 'Pending') === status).length;
+      applications.filter((application) => (application.status || PENDING_STATUS) === status).length;
 
     return [
-      { label: 'Total Pending', value: totalByStatus('Pending'), badge: 'Live', icon: TotalPending, tone: 'pending' },
-      { label: 'Verified', value: totalByStatus('Verified'), badge: 'Today', icon: VerifiedIcon, tone: 'verified' },
-      { label: 'Rejected', value: totalByStatus('Rejected'), badge: 'Today', icon: RejectedIcon, tone: 'rejected' },
+      { label: 'Total Pending', value: totalByStatus(PENDING_STATUS), badge: 'Live', icon: TotalPending, tone: 'pending' },
+      { label: 'Verified', value: totalByStatus(VERIFIED_STATUS), badge: 'Today', icon: VerifiedIcon, tone: 'verified' },
+      { label: 'Rejected', value: totalByStatus(REJECTED_STATUS), badge: 'Today', icon: RejectedIcon, tone: 'rejected' },
     ];
   }, [applications]);
+
+  const queuedApplications = useMemo(
+    () => applications.filter((application) => (application.status || PENDING_STATUS) === PENDING_STATUS),
+    [applications]
+  );
 
   const filteredApplications = useMemo(() => {
     const query = search.trim().toLowerCase();
 
     if (!query) {
-      return applications;
+      return queuedApplications;
     }
 
-    return applications.filter((application) =>
+    return queuedApplications.filter((application) =>
       [
         application.id,
         formatApplicantName(application),
@@ -118,7 +126,7 @@ export default function VerificationDashboard() {
         .toLowerCase()
         .includes(query)
     );
-  }, [applications, search]);
+  }, [queuedApplications, search]);
 
   const refreshQueue = () => {
     setApplications(readApplications());
@@ -126,7 +134,7 @@ export default function VerificationDashboard() {
 
   const updateApplicationStatus = (status) => {
     if (!selectedApplication) return;
-    if (status === 'Rejected' && !rejectionReason.trim()) {
+    if (status === REJECTED_STATUS && !rejectionReason.trim()) {
       alert('Please enter a reason before rejecting this application.');
       return;
     }
@@ -137,8 +145,8 @@ export default function VerificationDashboard() {
         ? {
             ...application,
             status,
-            rejectionReason: status === 'Rejected' ? rejectionReason : '',
-            verifiedAt: status === 'Verified' ? new Date().toISOString() : application.verifiedAt,
+            rejectionReason: status === REJECTED_STATUS ? rejectionReason : '',
+            verifiedAt: status === VERIFIED_STATUS ? new Date().toISOString() : application.verifiedAt,
           }
         : application
     );
@@ -147,8 +155,8 @@ export default function VerificationDashboard() {
         ? {
             ...application,
             status,
-            rejectionReason: status === 'Rejected' ? rejectionReason : '',
-            verifiedAt: status === 'Verified' ? new Date().toISOString() : application.verifiedAt,
+            rejectionReason: status === REJECTED_STATUS ? rejectionReason : '',
+            verifiedAt: status === VERIFIED_STATUS ? new Date().toISOString() : application.verifiedAt,
           }
         : application
     );
@@ -277,7 +285,7 @@ export default function VerificationDashboard() {
           <button
             type="button"
             className="vd-reject-button"
-            onClick={() => updateApplicationStatus('Rejected')}
+            onClick={() => updateApplicationStatus(REJECTED_STATUS)}
           >
             <img src={RejectedIcon} alt="" />
             Reject Application
@@ -285,7 +293,7 @@ export default function VerificationDashboard() {
           <button
             type="button"
             className="vd-verify-button"
-            onClick={() => updateApplicationStatus('Verified')}
+            onClick={() => updateApplicationStatus(VERIFIED_STATUS)}
           >
             <img src={VerifiedStatusIcon} alt="" />
             Verify and Forward
@@ -382,7 +390,7 @@ export default function VerificationDashboard() {
               {filteredApplications.length === 0 && (
                 <tr>
                   <td className="vd-empty" colSpan="6">
-                    No submitted applications found.
+            No pending applications found.
                   </td>
                 </tr>
               )}
@@ -392,7 +400,7 @@ export default function VerificationDashboard() {
 
         <footer className="vd-table-footer">
           <span>
-            Showing {filteredApplications.length ? 1 : 0} to {filteredApplications.length} of {applications.length} entries
+            Showing {filteredApplications.length ? 1 : 0} to {filteredApplications.length} of {queuedApplications.length} entries
           </span>
           <div className="vd-pagination" aria-hidden="true">
             <button type="button">‹</button>
