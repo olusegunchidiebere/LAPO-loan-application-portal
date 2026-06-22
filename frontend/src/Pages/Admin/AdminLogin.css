@@ -32,7 +32,6 @@ html, body, #root {
   padding: 40px;
 }
 
-/* black gradient overlay (from Figma: #000000 0% → #000000) */
 .login-left__overlay {
   position: absolute;
   inset: 0;
@@ -44,14 +43,12 @@ html, body, #root {
   z-index: 0;
 }
 
-/* brand + hero sit above overlay */
 .login-left__brand,
 .login-left__hero {
   position: relative;
   z-index: 1;
 }
 
-/* ── Logo + STAFF PORTAL ── */
 .login-left__brand {
   display: flex;
   flex-direction: column;
@@ -64,7 +61,6 @@ html, body, #root {
   object-fit: contain;
 }
 
-/* STAFF PORTAL — from Figma image 1 */
 .login-left__portal-sub {
   margin-top: 10px;
   color: #006B3F;
@@ -76,8 +72,6 @@ html, body, #root {
   text-transform: uppercase;
 }
 
-/* ── Hero text (bottom left) ── */
-/* "Institutional Trust & Security." — from Figma image 3 */
 .login-left__heading {
   color: #FFFFFF;
   font-family: 'Space Grotesk', sans-serif;
@@ -88,7 +82,6 @@ html, body, #root {
   margin: 0 0 16px;
 }
 
-/* paragraph — from Figma image 4 */
 .login-left__sub {
   color: rgba(255, 255, 255, 0.80);
   font-family: 'Space Grotesk', sans-serif;
@@ -110,12 +103,10 @@ html, body, #root {
   padding: 2rem;
 }
 
-/* form card — Figma image 5: width 448px */
 .login-form {
   width: 448px;
 }
 
-/* "Welcome back" — Figma image 5 */
 .login-form__heading {
   color: #1B1C1C;
   font-family: 'Space Grotesk', sans-serif;
@@ -125,7 +116,6 @@ html, body, #root {
   margin: 0 0 4px;
 }
 
-/* subtitle */
 .login-form__sub {
   color: #3E4A41;
   font-family: 'Space Grotesk', sans-serif;
@@ -135,7 +125,6 @@ html, body, #root {
   margin: 0 0 28px;
 }
 
-/* ── Labels — Figma image 6 ── */
 .login-form__label {
   display: block;
   color: #3E4A41;
@@ -148,7 +137,7 @@ html, body, #root {
   margin-top: 20px;
 }
 
-/* ── Input wrapper ── */
+/* ── Text input wrapper (Staff ID) ── */
 .login-form__input-wrapper {
   display: flex;
   align-items: center;
@@ -178,7 +167,6 @@ html, body, #root {
   color: #9CA3AF;
 }
 
-/* icons inside input */
 .input-icon {
   width: 16px;
   height: 16px;
@@ -187,20 +175,45 @@ html, body, #root {
   margin-right: 8px;
 }
 
-.eye-icon {
+/* ── Role select dropdown ── */
+.login-form__select-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 1.5px solid #D1D5DB;
+  border-radius: 8px;
+  padding: 0 14px;
+  background-color: #fff;
+  transition: border-color 0.2s;
+}
+
+.login-form__select-wrapper:focus-within {
+  border-color: #006B3F;
+}
+
+.login-form__select {
+  flex: 1;
+  border: none;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  color: #1B1C1C;
+  padding: 12px 8px;
+  padding-right: 24px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.select-icon {
+  position: absolute;
+  right: 14px;
   width: 16px;
   height: 16px;
   color: #9CA3AF;
-}
-
-.login-form__eye-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 4px;
-  display: flex;
-  align-items: center;
-  color: #9CA3AF;
+  pointer-events: none;
 }
 
 /* ── Remember me row ── */
