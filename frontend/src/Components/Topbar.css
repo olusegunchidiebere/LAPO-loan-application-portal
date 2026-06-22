@@ -1,7 +1,9 @@
 .topbar {
   background-color: #fff;
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
   display: flex;
   width: 100%;
@@ -16,8 +18,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 80px;
+  min-height: 80px;
   flex-wrap: wrap;
+  gap: 12px 20px;
 }
 
 .topbar-logo h1 {
@@ -25,6 +28,13 @@
   font-size: 24px;
   font-weight: bold;
   color: #1a5c1a;
+}
+
+.topbar-logo img {
+  display: block;
+  width: 95px;
+  max-width: 30vw;
+  height: auto;
 }
 
 .topbar-nav {
@@ -37,6 +47,7 @@
   font-weight: 400;
   letter-spacing: 0%;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .topbar-nav li {
@@ -112,15 +123,15 @@
 
 @media (max-width: 768px) {
   .topbar-container {
-    height: 60px;
-    padding: 0 10px;
+    min-height: 60px;
+    padding: 10px;
   }
 
   .topbar-nav {
     gap: 10px;
     order: 3;
     width: 100%;
-    margin-top: 10px;
+    margin-top: 0;
     justify-content: center;
   }
 

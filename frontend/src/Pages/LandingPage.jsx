@@ -38,19 +38,19 @@ const testimonials = [
 function LandingPage() {
     return (
         <div className="landingPage-container">
-            <div className="first-box" id="home">
-                <h1 className="FirstBox-header">Apply For Your <span className="omo">LAPO</span> Loan Anywhere, Anytime</h1>
+            <section className="first-box" id="home">
+                <div className="hero-copy">
+                    <h1 className="FirstBox-header">Apply For Your <span className="omo">LAPO</span> Loan Anywhere, Anytime</h1>
+                    <div className="submit-yada">
+                        <p className="submit-text">Submit your loan application online and receive updates directly from your device. Experience seamless digital banking tailored for your needs.</p>
+                    </div>
+                    <div className="hero-actions">
+                        <Link to="/eligibility" className="loan-buttons1">Apply Now</Link>
+                        <Link to="/check-balance" className="loan-buttons2">Check Loan Balance</Link>
+                    </div>
+                </div>
                 <img src={PersonApplyLoan} alt="PersonApplyingLoan" className="PersonLoan" />
-            </div>
-            <div className="submit-yada">
-                <p className="submit-text">Submit your loan application online and receive updates<br />
-                directly from your device. Experience seamless digital<br />
-                banking tailored for your needs.<br /></p>
-            </div>
-            <div>
-                <Link to="/eligibility" className="loan-buttons1">Apply Now</Link>
-                <Link to="/check-balance" className="loan-buttons2">Check Loan Balance</Link>
-            </div>
+            </section>
             <section className="why-choose-us" id="about-us">
             <header className="section-header">
                 <p className="section-tagline">WHY CHOOSE US</p>

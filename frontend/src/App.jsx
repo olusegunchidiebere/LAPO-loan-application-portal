@@ -37,7 +37,7 @@ function App() {
   const isAdminPage = lowerPathname.startsWith('/admin') || isDisbursementQuery;
 
   return (
-    <div>
+    <div className={isAdminPage ? 'app-shell admin-shell' : 'app-shell has-topbar'}>
       <ScrollToHash />
       {!isAdminPage && <Topbar />}
       <main>

@@ -1,23 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
 
+.landingPage-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+}
+
 /* Desktop Layout (Original) */
 .first-box {
     display: flex;
-    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(24px, 5vw, 72px);
+    width: min(100%, 1368px);
+    margin: 0 auto clamp(56px, 8vw, 106px);
+    padding: clamp(36px, 7vw, 86px) clamp(16px, 4vw, 32px) 0;
+}
+
+.hero-copy {
+    flex: 1 1 560px;
+    min-width: 0;
 }
 
 .FirstBox-header {
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
-    font-size: 56px;
-    letter-spacing: -0.96px;
-    width: 800px;
-    height: 112px;
-    margin-top: 98px;
-    margin-left: 20px;
-}
-.first-box {
-    margin-bottom: 106px;
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    letter-spacing: 0;
+    line-height: 1.08;
+    width: min(100%, 760px);
+    margin: 0;
 }
 
 .omo {
@@ -25,35 +37,46 @@
 }
 
 .PersonLoan {
-    width: 580px;
+    width: min(42vw, 580px);
     max-width: 100%;
-    height: 432px;
-    margin-top: 66px;
-    margin-right: 20px;
+    height: auto;
+    margin: 0;
+    object-fit: contain;
+    flex: 0 1 580px;
 }
 
 .submit-yada {
-    margin-top: -260px;
-    margin-left: 20px;
+    width: 100%;
+    margin: 24px 0 0;
+    padding: 0;
 }
 
 .submit-text {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 18px;
-    letter-spacing: 0px;
-    margin-bottom: 3px;
+    letter-spacing: 0;
+    margin: 0;
     line-height: 28px;
+    max-width: 580px;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    width: 100%;
+    margin: 36px 0 0;
+    padding: 0;
 }
 
 .loan-buttons1 {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin-top: 48px;
-    margin-left: 20px;
+    margin: 0;
     height: 54px;
-    width: 138px;
-    margin-right: 10px;
+    min-width: 138px;
+    padding: 0 20px;
     background-color: #EC8020;
     color: white;
     border: none;
@@ -76,9 +99,12 @@
 }
 
 .loan-buttons2 {
-    margin-top: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
     height: 54px;
-    width: 207px;
+    min-width: 207px;
     background-color: white;
     color: #008D4B;
     border: 2px solid #1a8a3c;
@@ -105,28 +131,21 @@
 
 /* Tablets: 769px to 1023px - Responsive adjustments */
 @media (max-width: 1023px) {
+    .first-box {
+        padding-top: 40px;
+    }
+
     .FirstBox-header {
-        font-size: 48px;
-        width: auto;
-        height: auto;
-        margin-top: 40px;
-        margin-left: 10px;
+        width: min(100%, 620px);
     }
 
     .PersonLoan {
-        width: 400px;
-        height: auto;
-        margin-top: 20px;
-        margin-right: 10px;
-    }
-
-    .submit-yada {
-        margin-top: 10px;
-        margin-left: 10px;
+        width: min(40vw, 400px);
     }
 
     .submit-text {
         font-size: 16px;
+        max-width: 520px;
     }
 
     .loan-buttons1,
@@ -136,11 +155,11 @@
     }
 
     .loan-buttons1 {
-        width: 120px;
+        min-width: 120px;
     }
 
     .loan-buttons2 {
-        width: 180px;
+        min-width: 180px;
     }
 }
 
@@ -149,43 +168,45 @@
     .first-box {
         flex-direction: column;
         align-items: center;
-        gap: 20px;
+        gap: 24px;
+        padding-top: 36px;
+    }
+
+    .hero-copy {
+        flex-basis: auto;
+        width: 100%;
     }
 
     .FirstBox-header {
-        font-size: 40px;
         width: 100%;
-        height: auto;
-        margin: 20px 10px 0 10px;
+        margin: 0;
         text-align: center;
-        letter-spacing: -0.5px;
     }
 
     .PersonLoan {
-        width: 100%;
+        width: min(100%, 500px);
         max-width: 500px;
-        height: auto;
-        margin: 20px 10px;
+        margin: 0;
     }
 
     .submit-yada {
-        margin-top: 10px;
-        margin-left: 0;
+        margin-top: 20px;
         text-align: center;
-        padding: 0 15px;
     }
 
     .submit-text {
         font-size: 16px;
-        margin-bottom: 20px;
+        max-width: 620px;
+        margin: 0 auto;
+    }
+
+    .hero-actions {
+        justify-content: center;
+        margin-top: 24px;
     }
 
     .loan-buttons1,
     .loan-buttons2 {
-        display: inline-block;
-        margin-right: 10px;
-        margin-top: 15px;
-        margin-bottom: 10px;
         height: 48px;
         font-size: 14px;
     }
@@ -210,31 +231,26 @@
     }
 
     .FirstBox-header {
-        font-size: 28px;
-        width: 100%;
-        height: auto;
-        margin: 15px 10px 0 10px;
-        text-align: center;
-        letter-spacing: -0.3px;
+        line-height: 1.12;
     }
 
     .PersonLoan {
-        width: 100%;
         max-width: 350px;
-        height: auto;
-        margin: 15px 10px;
     }
 
     .submit-yada {
-        margin-top: 5px;
-        margin-left: 0;
-        text-align: center;
-        padding: 0 10px;
+        margin-top: 16px;
     }
 
     .submit-text {
         font-size: 14px;
-        margin-bottom: 15px;
+        line-height: 1.65;
+    }
+
+    .hero-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+        margin-top: 20px;
     }
 
     .loan-buttons1,
@@ -257,19 +273,16 @@
 
 /* Extra small mobile: up to 480px */
 @media (max-width: 480px) {
-    .FirstBox-header {
-        font-size: 24px;
-        margin-top: 10px;
+    .first-box {
+        padding-top: 28px;
     }
 
     .PersonLoan {
         max-width: 280px;
-        margin: 10px 10px;
     }
 
     .submit-text {
-        font-size: 12px;
-        margin-bottom: 10px;
+        font-size: 13px;
     }
 
     .loan-buttons1,
@@ -287,8 +300,7 @@
   align-items: center;
   font-family: 'Inter', sans-serif;
   color: #1f2937;
-  max-width: 1368px;
-  max-height: 720px;
+  width: min(100%, 1368px);
   margin: 0 auto;
   padding: 60px 24px;
   margin-bottom: 106px;
@@ -371,6 +383,13 @@
   margin-top: auto;
   position: relative;
   width: 100%;
+}
+
+.why-choose-us .card-image {
+  display: block;
+  width: min(100%, 220px);
+  height: auto;
+  margin: 0 auto;
 }
 
 /* Grid Column Spans for Cards */
@@ -785,6 +804,10 @@
 
 /* Responsive Styles */
 @media (max-width: 1024px) {
+  .why-choose-us {
+    margin-bottom: 72px;
+  }
+
   .why-choose-us .card-easy-app {
     grid-column: span 12;
   }
@@ -808,6 +831,7 @@
 @media (max-width: 640px) {
   .why-choose-us {
     padding: 40px 16px;
+    margin-bottom: 56px;
   }
   
   .why-choose-us .section-title {
@@ -822,6 +846,7 @@
   .why-choose-us .card {
     grid-column: span 12 !important;
     min-height: auto;
+    padding: 24px;
   }
   
   .why-choose-us .card-illustration {
@@ -842,6 +867,7 @@
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 106px;
+  padding: 0 clamp(16px, 4vw, 24px);
 }
 
 .loan-products * {
@@ -865,11 +891,11 @@
 /* Products Grid */
 .loan-products .products-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
   width: 100%;
   max-width: 1368px;
-  padding: 0 16px;
+  padding: 0;
 }
 
 /* Product Card Styling */
@@ -944,8 +970,20 @@
 
 /* Responsive Breakpoints */
 @media (max-width: 1024px) {
+  .loan-products {
+    margin-bottom: 72px;
+  }
+}
+
+@media (max-width: 900px) and (orientation: portrait) {
   .loan-products .products-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) and (orientation: landscape) {
+  .loan-products .product-card {
+    padding: 20px;
   }
 }
 
@@ -976,9 +1014,8 @@ body {
 }
 
 .success-section {
-  min-height: 100vh;
   background: #f7f7f7;
-  padding: 20px 16px 28px;
+  padding: clamp(44px, 6vw, 72px) 16px 48px;
 }
 
 .success-container {
@@ -988,7 +1025,7 @@ body {
 
 .success-title {
   text-align: center;
-  font-size: 41px;
+  font-size: clamp(1.75rem, 4vw, 2.5625rem);
   line-height: 1.1;
   font-weight: 700;
   color: #1f1f1f;
@@ -1143,7 +1180,6 @@ body {
   .testimonial-card-large {
     min-height: auto;
     padding-bottom: 80px;
-    height: 465px;
   }
 
   .testimonial-text {
@@ -1176,6 +1212,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  flex-wrap: wrap;
   gap: 36px;
   position: relative;
   z-index: 5;
@@ -1188,7 +1225,8 @@ body {
 
 .footer-column {
   margin-left: 0;
-  min-width: max-content;
+  min-width: min(150px, 100%);
+  flex: 1 1 150px;
 }
 .footer-column h4 {
   font-size: 18px;
@@ -1218,6 +1256,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 24px;
   margin-top: auto;
   position: relative;
   z-index: 5;
@@ -1225,6 +1264,7 @@ body {
 
 .footer-links {
   display: flex;
+  flex-wrap: wrap;
   gap: 36px;
 }
 
@@ -1255,6 +1295,70 @@ body {
   height: 100%;
   object-fit: contain;
   display: block;
+}
+
+@media (max-width: 900px) {
+  .footer {
+    min-height: auto;
+    padding: 18px 24px 28px;
+  }
+
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px 24px;
+  }
+
+  .footer-logo {
+    grid-column: 1 / -1;
+  }
+
+  .footer-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .footer-links {
+    gap: 12px 24px;
+  }
+
+  .shape-green {
+    width: min(65vw, 420px);
+    height: auto;
+    aspect-ratio: 560 / 277;
+    right: -90px;
+    opacity: 0.55;
+  }
+}
+
+@media (max-width: 560px) {
+  .footer {
+    padding: 18px 16px 28px;
+  }
+
+  .footer-content {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .footer-column h4 {
+    font-size: 16px;
+  }
+
+  .footer-column p {
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+
+  .footer-links {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .shape-green {
+    width: 360px;
+    right: -160px;
+    bottom: -20px;
+  }
 }
 
 .shape-orange {
