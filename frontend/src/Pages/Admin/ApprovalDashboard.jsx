@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AlertTriangle, CheckCircle, Filter, Quote, RefreshCw, ShieldCheck, X, XCircle } from 'lucide-react';
 import './ApprovalDashboard.css';
 import LapoLogo from '../../assets/LapoLogo.png';
@@ -69,6 +70,26 @@ function MetricRow({ label, value }) {
       <span>{label}</span>
       <strong>{valueOrDash(value)}</strong>
     </div>
+  );
+}
+
+function LogoutButton() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('staff');
+    navigate('/admin');
+  };
+
+  return (
+    <button type="button" className="ad-logout-button" onClick={handleLogout}>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+        <polyline points="16 17 21 12 16 7" />
+        <line x1="21" y1="12" x2="9" y2="12" />
+      </svg>
+      Logout
+    </button>
   );
 }
 
@@ -144,10 +165,13 @@ export default function ApprovalDashboard() {
             <h1>Approval Dashboard</h1>
             <p>Review and action verified loan applications.</p>
           </div>
-          <button type="button" className="ad-refresh-button" onClick={refreshQueue}>
-            <RefreshCw size={16} aria-hidden="true" />
-            Refresh Queue
-          </button>
+          <div className="ad-header-actions">
+            <button type="button" className="ad-refresh-button" onClick={refreshQueue}>
+              <RefreshCw size={16} aria-hidden="true" />
+              Refresh Queue
+            </button>
+            <LogoutButton />
+          </div>
         </header>
 
         <div className="ad-review-layout">
@@ -298,10 +322,13 @@ export default function ApprovalDashboard() {
           <h1>Approval Dashboard</h1>
           <p>Review and action verified loan applications.</p>
         </div>
-        <button type="button" className="ad-refresh-button" onClick={refreshQueue}>
-          <RefreshCw size={16} aria-hidden="true" />
-          Refresh Queue
-        </button>
+        <div className="ad-header-actions">
+          <button type="button" className="ad-refresh-button" onClick={refreshQueue}>
+            <RefreshCw size={16} aria-hidden="true" />
+            Refresh Queue
+          </button>
+          <LogoutButton />
+        </div>
       </header>
 
       <div className="ad-stats-grid">

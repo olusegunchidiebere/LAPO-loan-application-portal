@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./AdminLogin.css";
 import bgImage from "../../assets/admin-login-bg.png";
 import lapoLogo from "../../assets/LapoLogo.png";
@@ -7,15 +8,58 @@ export default function AdminLogin() {
   const [staffId, setStaffId] = useState("");
   const [role, setRole] = useState("Verification Officer");
   const [rememberMe, setRememberMe] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleLogin = () => {
-    // Wire to Django backend later — for now just route based on role
-    console.log("Login:", { staffId, role, rememberMe });
+  const navigate = useNavigate();
 
-    // Later this will become something like:
-    // if (role === "Verification Officer") navigate("/admin/verification");
-    // if (role === "Approval Officer") navigate("/admin/approval");
-    // if (role === "Disbursement Officer") navigate("/admin/disbursement");
+  // Map dropdown display values to backend role values
+  const roleMap = {
+    "Verification Officer": "verification",
+    "Approval Officer": "approval",
+    "Disbursement Officer": "disbursement",
+  };
+
+  // Map backend role values to dashboard routes
+  const routeMap = {
+    verification: "/Admin/VerificationDashboard",
+    approval: "/Admin/ApprovalDashboard",
+    disbursement: "/Admin/DisbursementDashboard",
+  };
+
+  const handleLogin = async () => {
+    setError("");
+    setLoading(true);
+
+    try {
+      const response = await fetch("http://localhost:8000/api/loans/admin/login/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          staff_id: staffId,
+          role: roleMap[role],
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.error || "Login failed. Please check your details.");
+        setLoading(false);
+        return;
+      }
+
+      // Store staff info so dashboards can access it
+      localStorage.setItem("staff", JSON.stringify(data));
+
+      // Route to the correct dashboard based on role
+      navigate(routeMap[data.role]);
+
+    } catch (err) {
+      setError("Could not connect to server. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -59,7 +103,7 @@ export default function AdminLogin() {
             <input
               type="text"
               className="login-form__input"
-              placeholder="Eg. 1234abc"
+              placeholder="Eg. VER001, APP001,DIS001"
               value={staffId}
               onChange={(e) => setStaffId(e.target.value)}
             />
@@ -80,7 +124,7 @@ export default function AdminLogin() {
             <ChevronDownIcon />
           </div>
 
-          {/* Remember me + Forgot */}
+          {/* Remember me */}
           <div className="login-form__remember-row">
             <label className="login-form__check-label">
               <input
@@ -91,12 +135,22 @@ export default function AdminLogin() {
               />
               Remember me
             </label>
-           
           </div>
 
+          {/* Error message */}
+          {error && (
+            <p style={{ color: "red", fontSize: "0.85rem", marginBottom: "0.5rem" }}>
+              {error}
+            </p>
+          )}
+
           {/* Submit */}
-          <button className="login-form__submit-btn" onClick={handleLogin}>
-            Secure Login <LockSmallIcon />
+          <button
+            className="login-form__submit-btn"
+            onClick={handleLogin}
+            disabled={loading}
+          >
+            {loading ? "Signing in..." : <> Secure Login <LockSmallIcon /> </>}
           </button>
 
           {/* Footer */}

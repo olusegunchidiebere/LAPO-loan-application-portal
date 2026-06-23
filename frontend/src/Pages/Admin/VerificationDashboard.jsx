@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './VerificationDashboard.css';
 import LapoLogo from '../../assets/LapoLogo.png';
 import TotalPending from '../../assets/TotalPending.png';
@@ -82,6 +83,26 @@ function initialsFromName(name) {
     .map((part) => part[0])
     .join('')
     .toUpperCase() || 'NA';
+}
+
+function LogoutButton() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('staff');
+    navigate('/admin');
+  };
+
+  return (
+    <button type="button" className="vd-logout-button" onClick={handleLogout}>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+        <polyline points="16 17 21 12 16 7" />
+        <line x1="21" y1="12" x2="9" y2="12" />
+      </svg>
+      Logout
+    </button>
+  );
 }
 
 export default function VerificationDashboard() {
@@ -180,10 +201,13 @@ export default function VerificationDashboard() {
             <h1>Verification Dashboard</h1>
             <p>Manage and review pending loan applications.</p>
           </div>
-          <button type="button" className="vd-refresh-button" onClick={refreshQueue}>
-            <span aria-hidden="true">↻</span>
-            Refresh Queue
-          </button>
+          <div className="vd-header-actions">
+            <button type="button" className="vd-refresh-button" onClick={refreshQueue}>
+              <span aria-hidden="true">↻</span>
+              Refresh Queue
+            </button>
+            <LogoutButton />
+          </div>
         </header>
 
         <div className="vd-review-layout">
@@ -313,10 +337,13 @@ export default function VerificationDashboard() {
           <h1>Verification Dashboard</h1>
           <p>Manage and review pending loan applications.</p>
         </div>
-        <button type="button" className="vd-refresh-button" onClick={refreshQueue}>
-          <span aria-hidden="true">↻</span>
-          Refresh Queue
-        </button>
+        <div className="vd-header-actions">
+          <button type="button" className="vd-refresh-button" onClick={refreshQueue}>
+            <span aria-hidden="true">↻</span>
+            Refresh Queue
+          </button>
+          <LogoutButton />
+        </div>
       </header>
 
       <div className="vd-stats-grid">

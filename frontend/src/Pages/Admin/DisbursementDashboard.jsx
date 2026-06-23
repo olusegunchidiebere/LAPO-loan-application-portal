@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CheckCircle, Filter, RefreshCw, Wallet, X } from 'lucide-react';
 import './DisbursementDashboard.css';
 import LapoLogo from '../../assets/LapoLogo.png';
@@ -90,6 +91,26 @@ function makeDisbursementReference(application) {
   return `LAPO-DIS-${appSuffix}${suffix}`;
 }
 
+function LogoutButton() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('staff');
+    navigate('/admin');
+  };
+
+  return (
+    <button type="button" className="dd-logout-button" onClick={handleLogout}>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+        <polyline points="16 17 21 12 16 7" />
+        <line x1="21" y1="12" x2="9" y2="12" />
+      </svg>
+      Logout
+    </button>
+  );
+}
+
 export default function DisbursementDashboard() {
   const [applications, setApplications] = useState(() => readApplications());
   const [selectedApplicationId, setSelectedApplicationId] = useState(null);
@@ -163,10 +184,13 @@ export default function DisbursementDashboard() {
           <h1>Disbursement Dashboard</h1>
           <p>Manage and execute approved loan disbursements.</p>
         </div>
-        <button type="button" className="dd-refresh-button" onClick={refreshQueue}>
-          <RefreshCw size={16} aria-hidden="true" />
-          Refresh Queue
-        </button>
+        <div className="dd-header-actions">
+          <button type="button" className="dd-refresh-button" onClick={refreshQueue}>
+            <RefreshCw size={16} aria-hidden="true" />
+            Refresh Queue
+          </button>
+          <LogoutButton />
+        </div>
       </header>
 
       <div className="dd-stats-grid">
